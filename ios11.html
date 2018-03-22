@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    ios11 test
+    <script>
+    
+// 判断Android还是IOS
+var u = navigator.userAgent;
+var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+
+// 摄像头调起失败
+var onError = function(error){
+    alert('Webcam Error\nName: '+error.name + '\nMessage: '+error.message);
+}
+// 摄像头调起成功
+var onSuccess = function(stream){
+    var video = document.createElement('video');
+    video.style.width = document.documentElement.clientWidth + 'px';
+    video.style.height = document.documentElement.clientHeight + 'px';
+
+    video.srcObject = stream;
+    
+    // to start the video, when it is possible to start it only on userevent. like in android
+    video.body.addEventListener('click', function(){
+        video.play();
+    });
+
+    // wait until the video stream is ready
+    var interval = setInterval(function(){
+        if(!video.videoWidth){
+            return;
+        }
+        document.body.appendChild(video);
+        
+        clearInterval(interval);
+    }, 1000/50);
+}
+
+// check API is available
+if(navigator.mediaDevices === undefined || navigator.mediaDevices.enumerateDevices === undefined || navigator.mediaDevices.getUserMedia === undefined){
+    if( navigator.mediaDevices === undefined ){
+        var fctName = 'navigator.mediaDevices';
+    }
+    else if( navigator.mediaDevices.enumerateDevices === undefined ){
+        var fctName = 'navigator.mediaDevices.enumerateDevices';
+    }
+    else if( navigator.mediaDevices.getUserMedia === undefined ){
+        var fctName = 'navigator.mediaDevices.getUserMedia';
+    }
+    else{
+        console.assert(false);
+    }
+    onError({
+        name: '',
+        message: 'WebRTC issue-! '+fctName+' not present in your browser'
+    })
+}
+
+// get available devices
+navigator.mediaDevices.enumerateDevices().then(function(devices){
+    // 如果是水果机
+    if(isiOS){
+        navigator.mediaDevices.getUserMedia({
+            audio: false,
+            video: {
+                facingMode: 'environment'
+            }
+        }).then(onSuccess).catch(onError);
+    }
+    // 如果是安卓机
+    else{
+        var videoSourceId;
+        for(var i = 0; i < devices.length; i++){
+            var deviceInfo = devices[i];
+            // 获取后置摄像头
+            if(deviceInfo.kind == "videoinput" && deviceInfo.label.split(', ')[1] == "facing back"){
+                videoSourceId = deviceInfo.deviceId;
+            }
+        }
+        navigator.mediaDevices.getUserMedia({
+            audio: false,
+            video: {
+                optional: [{sourceId: videoSourceId}]
+            }
+        }).then(onSuccess).catch(onError);
+    }
+}).catch(onError);
+
+    
+    </script>
+</body>
+</html>
