@@ -44,7 +44,11 @@ var particleImage = new Image(); //THREE.ImageUtils.loadTexture( "http://i.imgur
 //particleImage.src = 'http://i.imgur.com/cTALZ.png'; 
 particleImage.src = './cTALZ.png'; 
 
-
+var projector = new THREE.Projector();
+//マウスのグローバル変数
+var mouse = { x: 0, y: 0 };  
+//オブジェクト格納グローバル変数
+var targetList = []
 
 function init() {
     SCREEN_WIDTH = window.innerWidth;
@@ -70,7 +74,7 @@ function init() {
     camera.position.z = 1000;
     geometry = new THREE.CubeGeometry(50, 50, 50);
     material = new THREE.MeshBasicMaterial({
-        color: 0xff0000,
+        color: 0x00ff00,
         wireframe: true
     });
 
@@ -78,6 +82,7 @@ mesh = new THREE.Mesh(geometry, material);
 
     scene = new THREE.Scene();
     scene.add(camera);
+    targetList.push(mesh);
     scene.add(mesh);
         
     renderer = new THREE.CanvasRenderer();
@@ -219,8 +224,29 @@ THREE.Vector3.prototype.rotateZ = function(angle) {
     this.y = (tempy * cosRY) + (tempx * sinRY);
     this.x = (tempy * -sinRY) + (tempx * cosRY);
 }
+ window.onmousedown = function (ev){
+    if (ev.target == renderer.domElement) { 
+    
+        var rect = ev.target.getBoundingClientRect();    
+        mouse.x =  ev.clientX - rect.left
+        mouse.y =  ev.clientY - rect.top
+        mouse.x =  (mouse.x / window.innerWidth) * 2 - 1
+        mouse.y = -(mouse.y / window.innerHeight) * 2 + 1
+        var vector = new THREE.Vector3( mouse.x, mouse.y ,1);
 
-// returns a random number between the two limits provided 
+        projector.unprojectVector( vector, camera );
+        var ray = new THREE.Raycaster( camera.position, vector.subSelf( camera.position ).normalize() );
+        console.log(ray);
+        var obj = ray.intersectObjects( targetList );
+        
+        if ( obj.length > 0 ){                       
+          
+          alert("click!!")
+          
+       } 
+     }
+ 
+ }
 
 function randomRange(min, max) {
     return ((Math.random() * (max - min)) + min);
