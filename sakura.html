@@ -16,7 +16,7 @@ a {
 }
     </style>
     
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r54/three.min.js"></script>    
+<script src="./three.min.js"></script>    
    
 <script>
 
@@ -44,15 +44,25 @@ var particleImage = new Image(); //THREE.ImageUtils.loadTexture( "http://i.imgur
 //particleImage.src = 'http://i.imgur.com/cTALZ.png'; 
 particleImage.src = './cTALZ.png'; 
 
+
+
 function init() {
     container = document.createElement('div');
     document.body.appendChild(container);
 
     camera = new THREE.PerspectiveCamera( 75, SCREEN_WIDTH / SCREEN_HEIGHT, 1, 10000 );
     camera.position.z = 1000;
+    geometry = new THREE.CubeGeometry(50, 50, 50);
+    material = new THREE.MeshBasicMaterial({
+        color: 0xff0000,
+        wireframe: true
+    });
+
+mesh = new THREE.Mesh(geometry, material);
 
     scene = new THREE.Scene();
     scene.add(camera);
+    scene.add(mesh);
         
     renderer = new THREE.CanvasRenderer();
     renderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -104,7 +114,7 @@ function onDocumentTouchMove( event ) {
 
         event.preventDefault();
 
-        mouseX = event.touches[ 0 ].pageX - windowHalfX;
+        mouseX = event.touchs[ 0 ].pageX - windowHalfX;
         mouseY = event.touches[ 0 ].pageY - windowHalfY;
     }
 }
@@ -127,8 +137,8 @@ for(var i = 0; i<particles.length; i++) {
         }                
     }
 
-    camera.position.x += ( mouseX - camera.position.x ) * 0.05;
-    camera.position.y += ( - mouseY - camera.position.y ) * 0.05;
+    // camera.position.x += ( mouseX - camera.position.x ) * 0.05;
+    // camera.position.y += ( - mouseY - camera.position.y ) * 0.05;
     camera.lookAt(scene.position); 
 
     renderer.render( scene, camera );
