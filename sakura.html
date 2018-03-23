@@ -22,8 +22,8 @@ a {
 
 
 
-var SCREEN_WIDTH = window.innerWidth;
-var SCREEN_HEIGHT = window.innerHeight;
+var SCREEN_WIDTH;
+var SCREEN_HEIGHT;
 
 var container;
 
@@ -36,8 +36,8 @@ var renderer;
 var mouseX = 0;
 var mouseY = 0;
 
-var windowHalfX = window.innerWidth / 2;
-var windowHalfY = window.innerHeight / 2;
+var windowHalfX;
+var windowHalfY;
 
 var particles = []; 
 var particleImage = new Image(); //THREE.ImageUtils.loadTexture( "http://i.imgur.com/cTALZ.png" );
@@ -47,6 +47,22 @@ particleImage.src = './cTALZ.png';
 
 
 function init() {
+    SCREEN_WIDTH = window.innerWidth;
+    SCREEN_HEIGHT = window.innerHeight;
+
+    container;
+
+    particle;
+
+    camera;
+    scene;
+    renderer;
+
+    mouseX = 0;
+    mouseY = 0;
+
+    windowHalfX = window.innerWidth / 2;
+    windowHalfY = window.innerHeight / 2;
     container = document.createElement('div');
     document.body.appendChild(container);
 
