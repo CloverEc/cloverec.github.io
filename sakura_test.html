@@ -232,10 +232,6 @@
 
         function animate() {
             requestAnimationFrame( animate );
-            for (i = 0; i < LENGTH; ++i) {
-                // console.log(gd[i] * 2)
-            }
-            // mesh.rotation.x += 0.05;
             for(var i = 0; i<particles.length; i++) {
                 // particles[i].position.z -=  0.5;
                if (clicked == i){
@@ -284,7 +280,7 @@
                                        particles[i].rotation.z += Math.random() * (0.01 * j);
                                }
                                if (gd[j] > 200 ){
-                                       particles[i].position.y += Math.random() * (gd[j] * j)  / 1000;
+                                       particles[i].position.y += Math.random() * (gd[j] * j)  / 800;
                                        particles[i].rotation.y += Math.random() * (0.01 * j);
                                        particles[i].rotation.x += Math.random() * (0.01 * j);
                                        particles[i].rotation.z += Math.random() * (0.01 * j);
@@ -322,7 +318,7 @@
 
     setInterval(() => {
       analyser.getByteFrequencyData(gd);
-    }, 20);
+    }, 50);
   }
 
 
