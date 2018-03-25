@@ -274,21 +274,25 @@
                }
 
                let re = parseInt(xrange / LENGTH);
-               if (gd == particles[i].position.y < Math.random() * 10 ==  particles[i].position.y > Math.random() * -200){
                    for (j = 0; j < LENGTH; ++j) {
                        if (gd[j] > 0){
                            if (particles[i].position.x >  xrange[parseInt(j * re)] == particles[i].position.x  < xrange[parseInt(j + 1 * re)] ){ 
-                               if (gd[j] > 190 ){
+                               if (gd[j] > 300 ){
                                        particles[i].position.y += Math.random() * (gd[j] * j)  / 400;
                                        particles[i].rotation.y += Math.random() * (0.01 * j);
                                        particles[i].rotation.x += Math.random() * (0.01 * j);
+                                       particles[i].rotation.z += Math.random() * (0.01 * j);
+                               }
+                               if (gd[j] > 200 ){
+                                       particles[i].position.y += Math.random() * (gd[j] * j)  / 1000;
+                                       particles[i].rotation.y += Math.random() * (0.01 * j);
                                        particles[i].rotation.x += Math.random() * (0.01 * j);
+                                       particles[i].rotation.z += Math.random() * (0.01 * j);
                                }
                            }
                        }
                    }
                
-               }
             }  
             
             //clicked = 0;
