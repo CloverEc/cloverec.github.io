@@ -273,21 +273,40 @@
                    for (j = 0; j < LENGTH; ++j) {
                        if (gd[j] > 0){
                            if (particles[i].position.x >  xrange[parseInt(j * re)] == particles[i].position.x  < xrange[parseInt(j + 1 * re)] ){ 
-                               if (gd[j] > 300 ){
-                                       particles[i].position.y += Math.random() * (gd[j] * j)  / 400;
+                               if (particles[i].position.x < 100 == particles[i].position.x > -100 ){
+                                   if (gd[j] > 250 ){
+                                       particles[i].position.y += Math.random() * (gd[j] * j)  / 500;
                                        particles[i].rotation.y += Math.random() * (0.01 * j);
                                        particles[i].rotation.x += Math.random() * (0.01 * j);
                                        particles[i].rotation.z += Math.random() * (0.01 * j);
-                               }
-                               if (gd[j] > 200 ){
+                                   }
+                                   if (gd[j] > 200 ){
                                        particles[i].position.y += Math.random() * (gd[j] * j)  / 800;
                                        particles[i].rotation.y += Math.random() * (0.01 * j);
                                        particles[i].rotation.x += Math.random() * (0.01 * j);
                                        particles[i].rotation.z += Math.random() * (0.01 * j);
+                                   }
+                               }else{
+                                   if (gd[j] > 280 ){
+                                       particles[i].position.y += Math.random() * (gd[j] * j)  / 400;
+                                       particles[i].rotation.y += Math.random() * (0.01 * j);
+                                       particles[i].rotation.x += Math.random() * (0.01 * j);
+                                       particles[i].rotation.z += Math.random() * (0.01 * j);
+                                   }
+                                   if (gd[j] > 210 ){
+                                       particles[i].position.y += Math.random() * (gd[j] * j)  / 840;
+                                       particles[i].rotation.y += Math.random() * (0.01 * j);
+                                       particles[i].rotation.x += Math.random() * (0.01 * j);
+                                       particles[i].rotation.z += Math.random() * (0.01 * j);
+                                   }
+                               
+                               
                                }
                            }
                        }
                    }
+               
+
                
             }  
             
