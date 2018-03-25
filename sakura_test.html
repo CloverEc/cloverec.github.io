@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
     <head>
         <title>three.js canvas - geometry - shapes</title>
         <meta charset="utf-8">
@@ -48,6 +47,7 @@
         init();
         animate();
         function init() {
+            swal("Game start!");
             particles = [];
             container = document.createElement( 'div' );
             document.body.appendChild( container );
@@ -73,7 +73,7 @@
             // scene.add(pointLightHelper);
             //var geometry = new THREE.SphereGeometry(10);
             // var geometry = new THREE.PlaneGeometry( 40, 40, 32 ); 
-            var wireframe = true;
+            var wireframe = false;
             var geometry = new THREE.SphereGeometry(22, 8, 4, 0, Math.PI);
             // const geometry = new THREE.TorusGeometry(19, 8, 6, 10);
             var colors = [0xf0c8d9,0xffce0ec,0xfff8abc]
@@ -152,7 +152,7 @@
                     
                     document.getElementById("count").innerHTML = count;
                     // console.log(count)
-                    if (count > 6){
+                    if (count > 2){
                         swal("Good job!", "You clicked the button!", "success"); 
                     
                     }
