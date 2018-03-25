@@ -25,6 +25,7 @@
                 text-align:center;
             }
         </style>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
     <body>
         <div style="text-align:center;width:100%;font-size:1.2rem;position: absolute;color:red;margin-top:10px;">
@@ -148,8 +149,13 @@
                        particles[i].position.y += 1;
                     }
                     count += 1;
-                    console.log(count)
+                    
                     document.getElementById("count").innerHTML = count;
+                    // console.log(count)
+                    if (count > 6){
+                        swal("Good job!", "You clicked the button!", "success"); 
+                    
+                    }
 
                 } 
 
