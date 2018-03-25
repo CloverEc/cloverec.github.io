@@ -37,13 +37,80 @@
         <!-- <script src="js/renderers/CanvasRenderer.js"></script> -->
         <!-- <script src="js/libs/stats.min.js"></script> -->
         <script>
-        var camera, scene, renderer ,stats,container,particle,particles,geo;
-        var mesh;
-        var projector = new THREE.Projector();
-        var mouse = { x: 0, y: 0 };  
-        var targetList = [];
-        var count = 0;
-        var clicked = 0
+        var range = function(start, end, step) {
+            var range = [];
+            var typeofStart = typeof start;
+            var typeofEnd = typeof end;
+
+            if (step === 0) {
+                throw TypeError("Step cannot be zero.");
+            }
+
+            if (typeofStart == "undefined" || typeofEnd == "undefined") {
+                throw TypeError("Must pass start and end arguments.");
+            } else if (typeofStart != typeofEnd) {
+                throw TypeError("Start and end arguments must be of same type.");
+            }
+
+            typeof step == "undefined" && (step = 1);
+
+            if (end < start) {
+                step = -step;
+            }
+
+            if (typeofStart == "number") {
+
+                while (step > 0 ? end >= start : end <= start) {
+                    range.push(start);
+                    start += step;
+                }
+
+            } else if (typeofStart == "string") {
+
+                if (start.length != 1 || end.length != 1) {
+                    throw TypeError("Only strings with one character are supported.");
+                }
+
+                start = start.charCodeAt(0);
+                end = end.charCodeAt(0);
+
+                while (step > 0 ? end >= start : end <= start) {
+                    range.push(String.fromCharCode(start));
+                    start += step;
+                }
+
+            } else {
+                throw TypeError("Only string and number types are supported");
+            }
+
+            return range;
+
+        }
+        let camera, scene, renderer ,stats,container,particle,particles,geo,gd;
+        gd = []
+        let mesh;
+        let projector = new THREE.Projector();
+        let mouse = { x: 0, y: 0 };  
+        let targetList = [];
+        let count = 0;
+        let clicked = 0
+        let LENGTH   = 16
+        var xrange = range(-800,1200,1)
+        var yrange = range(-1000,1000,1)
+        var zrange = range(-400,400,1)
+        navigator.getUserMedia({
+            audio: true
+        }, _handleSuccess, _handleError);
+
+        function _handleSuccess(evt) {
+            // btn.addEventListener("click", () => {
+             _handleClick(evt);
+            // }, false);
+        }
+
+        function _handleError() {
+            alert("Error!");
+        }
         init();
         animate();
         function init() {
@@ -52,11 +119,12 @@
             container = document.createElement( 'div' );
             document.body.appendChild( container );
             camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-            camera.position.z = 400;
+            camera.position.z = 600;
             camera.lookAt(new THREE.Vector3(0, 10, 0));
             scene = new THREE.Scene();
 
             var texture = new THREE.TextureLoader().load( 'textures/intro_sakura2.png' );
+            // var texture = new THREE.TextureLoader().load( 'textures/rmb.png' );
             // var geometry = new THREE.PlaneGeometry( 40, 40, 32 ); 
             //var material = new THREE.MeshBasicMaterial( { map: texture,transparent: true, side: THREE.DoubleSide ,  alphaTest:0.1} );
             // var material = new THREE.MeshBasicMaterial();
@@ -74,7 +142,7 @@
             //var geometry = new THREE.SphereGeometry(10);
             // var geometry = new THREE.PlaneGeometry( 40, 40, 32 ); 
             var wireframe = false;
-            var geometry = new THREE.SphereGeometry(22, 8, 4, 0, Math.PI);
+            var geometry = new THREE.SphereGeometry(25, 8, 4, 0, Math.PI);
             // const geometry = new THREE.TorusGeometry(19, 8, 6, 10);
             var colors = [0xf0c8d9,0xffce0ec,0xfff8abc]
             for (var i = 0; i < 180; i++) {
@@ -84,7 +152,7 @@
                 particle.scale.z = 0.8;
                 particle.position.x = Math.random() * 1200 - 800;
                 particle.position.y = Math.random() * 2000 - 1000;
-                particle.position.z = Math.random() * -300;
+                particle.position.z = Math.random() * 300 - 400;
 
                 particle.rotation.y += Math.random() * 0.15;
                 particle.rotation.x -= Math.random() * 100;
@@ -94,7 +162,6 @@
                 // targetList.push();
                 particles.push(particle); 
             }
-
             //scene.background = new THREE.Color( 0xffffff ); 
             // renderer = new THREE.WebGLRenderer();
             renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } ); 
@@ -165,6 +232,9 @@
 
         function animate() {
             requestAnimationFrame( animate );
+            for (i = 0; i < LENGTH; ++i) {
+                // console.log(gd[i] * 2)
+            }
             // mesh.rotation.x += 0.05;
             for(var i = 0; i<particles.length; i++) {
                 // particles[i].position.z -=  0.5;
@@ -173,20 +243,21 @@
                    // particles[i].rotation.x += Math.random() * 0.01;
                    // particles[i].rotation.z += Math.random() * 0.1;
                }else{
-                   particles[i].rotation.y += Math.random() * 0.15;
+                   particles[i].rotation.y += Math.random() * 0.2;
                     particles[i].rotation.x -= Math.random() * 0.1;
                     // particles[i].rotation.z -= Math.random() * -1.001;
                }
+
                if(particles[i].position.y < -1000){
                    particles[i].position.y +=  1800;
                }else{
                    if (clicked == i){
                        particles[i].position.y +=  3;
-
                    }else{
                        particles[i].position.y -=  3;
                    }
                }
+               // console.log(particles[i].position.x)
                if(particles[i].position.x < -1000){
                    particles[i].position.x +=  1300;
                }else{
@@ -201,6 +272,23 @@
                        }
                    }
                }
+
+               let re = parseInt(xrange / LENGTH);
+               if (gd == particles[i].position.y < Math.random() * 10 ==  particles[i].position.y > Math.random() * -200){
+                   for (j = 0; j < LENGTH; ++j) {
+                       if (gd[j] > 0){
+                           if (particles[i].position.x >  xrange[parseInt(j * re)] == particles[i].position.x  < xrange[parseInt(j + 1 * re)] ){ 
+                               if (gd[j] > 190 ){
+                                       particles[i].position.y += Math.random() * (gd[j] * j)  / 400;
+                                       particles[i].rotation.y += Math.random() * (0.01 * j);
+                                       particles[i].rotation.x += Math.random() * (0.01 * j);
+                                       particles[i].rotation.x += Math.random() * (0.01 * j);
+                               }
+                           }
+                       }
+                   }
+               
+               }
             }  
             
             //clicked = 0;
@@ -211,6 +299,29 @@
         function randomRange(min, max) {
             return ((Math.random() * (max - min)) + min);
         }
+
+
+
+  function _handleClick(evt) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)(),
+        options  = {
+          mediaStream : evt
+        },
+        src      = audioCtx.createMediaStreamSource(evt),
+        analyser = audioCtx.createAnalyser(evt),
+        gd  = new Uint8Array(LENGTH),
+        w      = 0,
+        i      = 0;
+
+    analyser.fftSize = 1024;
+    src.connect(analyser);
+
+    setInterval(() => {
+      analyser.getByteFrequencyData(gd);
+    }, 20);
+  }
+
+
         </script>
     </body>
 </html>
