@@ -236,10 +236,6 @@
             requestAnimationFrame( animate );
             frame++;
             if(frame % 2 == 0) { return; }
-            if (gd){
-            
-                analyser.getByteFrequencyData(gd);
-            }
             for(var i = 0; i<particles.length; i++) {
                 // particles[i].position.z -=  0.5;
                if (clicked == i){
@@ -341,9 +337,9 @@
     analyser.fftSize = 1024;
     src.connect(analyser);
 
-    // setInterval(() => {
-    //   analyser.getByteFrequencyData(gd);
-    // }, 50);
+    setInterval(() => {
+      analyser.getByteFrequencyData(gd);
+    }, 100);
   }
 
 
