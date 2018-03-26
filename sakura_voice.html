@@ -86,7 +86,9 @@
             return range;
 
         }
-        let camera, scene, renderer ,stats,container,particle,particles,geo;
+        let camera, scene, renderer ,stats,container,particle,particles,geo,gd;
+        gd = [];
+        let analyser;
         let mesh;
         let projector = new THREE.Projector();
         let mouse = { x: 0, y: 0 };  
@@ -98,6 +100,19 @@
         var yrange = range(-1000,1000,1)
         var zrange = range(-400,400,1)
         let frame = 0;
+        navigator.getUserMedia({
+            audio: true
+        }, _handleSuccess, _handleError);
+
+        function _handleSuccess(evt) {
+            // btn.addEventListener("click", () => {
+             _handleClick(evt);
+            // }, false);
+        }
+
+        function _handleError() {
+            alert("Error!");
+        }
         init();
         animate();
         function init() {
@@ -221,6 +236,10 @@
             requestAnimationFrame( animate );
             frame++;
             if(frame % 2 == 0) { return; }
+            if (gd){
+            
+                analyser.getByteFrequencyData(gd);
+            }
             for(var i = 0; i<particles.length; i++) {
                 // particles[i].position.z -=  0.5;
                if (clicked == i){
@@ -258,6 +277,46 @@
                    }
                }
 
+               let re = parseInt(xrange / LENGTH);
+                   for (j = 0; j < LENGTH; ++j) {
+                       if (gd[j] > 0){
+                           if (particles[i].position.x >  xrange[parseInt(j * re)] == particles[i].position.x  < xrange[parseInt(j + 1 * re)] ){ 
+                               if (particles[i].position.x < 100 == particles[i].position.x > -100 ){
+                                   if (gd[j] > 250 ){
+                                       particles[i].position.y += Math.random() * (gd[j] * j)  / 500;
+                                       particles[i].rotation.y += Math.random() * (0.01 * j);
+                                       particles[i].rotation.x += Math.random() * (0.01 * j);
+                                       particles[i].rotation.z += Math.random() * (0.01 * j);
+                                   }
+                                   if (gd[j] > 200 ){
+                                       particles[i].position.y += Math.random() * (gd[j] * j)  / 800;
+                                       particles[i].rotation.y += Math.random() * (0.01 * j);
+                                       particles[i].rotation.x += Math.random() * (0.01 * j);
+                                       particles[i].rotation.z += Math.random() * (0.01 * j);
+                                   }
+                               }else{
+                                   if (gd[j] > 280 ){
+                                       particles[i].position.y += Math.random() * (gd[j] * j)  / 400;
+                                       particles[i].rotation.y += Math.random() * (0.01 * j);
+                                       particles[i].rotation.x += Math.random() * (0.01 * j);
+                                       particles[i].rotation.z += Math.random() * (0.01 * j);
+                                   }
+                                   if (gd[j] > 210 ){
+                                       particles[i].position.y += Math.random() * (gd[j] * j)  / 840;
+                                       particles[i].rotation.y += Math.random() * (0.01 * j);
+                                       particles[i].rotation.x += Math.random() * (0.01 * j);
+                                       particles[i].rotation.z += Math.random() * (0.01 * j);
+                                   }
+                               
+                               
+                               }
+                           }
+                       }
+                   }
+               
+
+               
+            }  
             
             renderer.render( scene, camera );
         }
@@ -265,6 +324,28 @@
         function randomRange(min, max) {
             return ((Math.random() * (max - min)) + min);
         }
+
+
+
+  function _handleClick(evt) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)(),
+        options  = {
+          mediaStream : evt
+        },
+        src      = audioCtx.createMediaStreamSource(evt),
+        analyser = audioCtx.createAnalyser(evt),
+        gd  = new Uint8Array(LENGTH),
+        w      = 0,
+        i      = 0;
+
+    analyser.fftSize = 1024;
+    src.connect(analyser);
+
+    // setInterval(() => {
+    //   analyser.getByteFrequencyData(gd);
+    // }, 50);
+  }
+
 
         </script>
     </body>
