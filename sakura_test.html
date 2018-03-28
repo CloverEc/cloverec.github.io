@@ -43,7 +43,7 @@ background-size: cover;
 display: block;
             
             ">
-            <canvas id="debug" style="position:absolute; left:100px">
+            <canvas id="canvas" style="display:none;position:absolute; left:100px">
             </canvas>
         </div>
         <script src="./three.min.js"></script>
@@ -53,6 +53,8 @@ display: block;
        var start = function(){
              document.getElementById("cover").style.display = "none";
              document.getElementById("button").style.display = "block";
+             document.getElementById("canvas").style.display = "block";
+             animate();
        }
 
      
@@ -120,10 +122,9 @@ display: block;
         var xrange = range(-800,1200,1)
         var yrange = range(-1000,1000,1)
         var zrange = range(-400,400,1)
-        const speed = 5;
+        const speed = 3;
         let frame = 0;
         init();
-        animate();
         function init() {
             particles = [];
             container = document.createElement( 'div' );
