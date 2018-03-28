@@ -26,14 +26,40 @@
         </style>
     </head>
     <body>
-        <div style="text-align:center;width:100%;font-size:1.2rem;position: absolute;color:red;margin-top:10px;">
-           点击:<span id="count">0</span>
+        <div style="display:none;text-align:center;width:100%;font-size:1.2rem;position: absolute;color:red;margin-top:10px;" id="button" >
+            <img src="textures/button_top.png"style="width:70%;" />
         </div>
-        <canvas id="debug" style="position:absolute; left:100px">
-        </canvas>
+        <div id="cover" onclick='start()' style="
+        width: 100vw;
+        height: 100vh;
+margin: 0px;
+overflow: hidden;
+padding: 0px;
+background-image: url(./textures/start.png);
+background-position: center center;
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+display: block;
+            
+            ">
+            <canvas id="debug" style="position:absolute; left:100px">
+            </canvas>
+        </div>
         <script src="./three.min.js"></script>
         <script src="./Projector.js"></script>
         <script>
+
+       var start = function(){
+             document.getElementById("cover").style.display = "none";
+             document.getElementById("button").style.display = "block";
+       }
+
+     
+
+
+
+
         var range = function(start, end, step) {
             var range = [];
             var typeofStart = typeof start;
@@ -94,7 +120,7 @@
         var xrange = range(-800,1200,1)
         var yrange = range(-1000,1000,1)
         var zrange = range(-400,400,1)
-        const speed = 5
+        const speed = 5;
         let frame = 0;
         init();
         animate();
@@ -103,7 +129,7 @@
             container = document.createElement( 'div' );
             document.body.appendChild( container );
             camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 8000 );
-            camera.position.z = 600;
+            camera.position.z = 500;
             camera.lookAt(new THREE.Vector3(0, 10, 0));
             scene = new THREE.Scene();
 
@@ -112,7 +138,7 @@
             const directionalLight = new THREE.DirectionalLight(0xFFFFFF);
             directionalLight.position.set(1, 1, 1);
             scene.add(directionalLight);
-            var geo = new THREE.PlaneGeometry( 80, 80,10,10 ); 
+            var geo = new THREE.PlaneGeometry( 60, 60,10,10 ); 
             var wireframe = false;
             var geometry = new THREE.SphereGeometry(20, 8, 4, 0, Math.PI);
             // const geometry = new THREE.TorusGeometry(19, 8, 6, 10);
@@ -120,21 +146,22 @@
             for (var i = 0; i < 80; i++) {
                 const material = new THREE.MeshBasicMaterial({wireframe: wireframe,color: colors[parseInt(Math.random() * 3) ],map: texture,transparent: true, side: THREE.DoubleSide ,  alphaTest:0.1});
                 const mat = new THREE.MeshBasicMaterial({wireframe: wireframe,map: texture2,transparent: true, side: THREE.DoubleSide ,  alphaTest:0.1});
-                if (i < 60){
+                if (i < 70){
                     particle = new THREE.Mesh( geometry, material );
                     particle.rotation.y += Math.random() * 0.15;
                     particle.rotation.x -= Math.random() * 100;
                     particle.rotation.x -= Math.random() * 100;
                     particle.position.x = randomRange(-800,1000);
                     particle.position.z = Math.random() * 300 - 400;
+                    particle.position.y = Math.random() * 2000 - 1000;
                 }else{
                     particle = new THREE.Mesh( geo, mat );
-                    particle.position.x = randomRange(-180,200)
-                    particle.position.z = Math.random() * 10 - 10;
+                    particle.position.x = randomRange(0,300)
+                    particle.position.z = randomRange(0,100)
+                    particle.position.y =  randomRange(1200,400);
                 }
                 particle.scale.y = 1.3;
                 particle.scale.z = 0.8;
-                particle.position.y = Math.random() * 2000 - 1000;
 
                 scene.add( particle );
 
@@ -197,7 +224,7 @@
                     }
                     count += 1;
                     
-                    document.getElementById("count").innerHTML = count;
+                    //document.getElementById("count").innerHTML = count;
                     // console.log(count)
                     // if (count > 2){
                     //     swal("Good job!", "You clicked the button!", "success"); 
@@ -218,7 +245,7 @@
                if (clicked == i){
                    particles[i].rotation.y += Math.random() * 1;
                }else{
-                   if (i < 60){
+                   if (i < 70){
                        particles[i].rotation.y += Math.random() * 0.4;
                        particles[i].rotation.x -= Math.random() * 0.2;
                    }else{
@@ -231,8 +258,8 @@
                     // particles[i].rotation.z -= Math.random() * -1.001;
                }
 
-               if(particles[i].position.y < -1000){
-                   particles[i].position.y +=  1800;
+               if(particles[i].position.y < -380){
+                   particles[i].position.y +=  760;
                    particles[i].rotation.y +=  0;
                    particles[i].rotation.x +=  0;
                    particles[i].rotation.z +=  0;
@@ -244,8 +271,8 @@
                    }
                }
                // console.log(particles[i].position.x)
-               if(particles[i].position.x < -1000){
-                   particles[i].position.x +=  1300;
+               if(particles[i].position.x < -250){
+                   particles[i].position.x +=  500;
                }else{
                    if (clicked == i){
                        particles[i].position.x -=   1 
