@@ -34,8 +34,6 @@
         </canvas>
         <script src="./three.min.js"></script>
         <script src="./Projector.js"></script>
-        <!-- <script src="js/renderers/CanvasRenderer.js"></script> -->
-        <!-- <script src="js/libs/stats.min.js"></script> -->
         <script>
         var range = function(start, end, step) {
             var range = [];
@@ -105,8 +103,8 @@
             particles = [];
             container = document.createElement( 'div' );
             document.body.appendChild( container );
-            camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
-            camera.position.z = 1000;
+            camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 8000 );
+            camera.position.z = 600;
             camera.lookAt(new THREE.Vector3(0, 10, 0));
             scene = new THREE.Scene();
 
@@ -227,9 +225,9 @@
                        particles[i].rotation.x -= Math.random() * 0.2;
                    }else{
                        if(particles[i].position.y < 0){
-                           particles[i].rotation.z -=  0.01;
+                           particles[i].rotation.z +=  0.03;
                        }else{
-                           particles[i].rotation.z +=  0.01;
+                           particles[i].rotation.z -=  0.04;
                        }
                    }
                     // particles[i].rotation.z -= Math.random() * -1.001;
