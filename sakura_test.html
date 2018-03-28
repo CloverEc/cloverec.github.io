@@ -27,7 +27,6 @@
            #cover {
                 margin: 0px;
                 padding:0;
-                height: 1024px;
                 max-width:100%;
                 display:block;
                 background-image: url(./textures/start.png?t=asdxxxxxff);
@@ -35,7 +34,61 @@
                 background-repeat: no-repeat;
                 background-attachment: fixed;
                 background-size: cover;
+
+
+                 display: -webkit-box;
+                 display: -ms-flexbox;
+                 display: -webkit-flex;
+                 display: flex;
+                 -webkit-box-align: center;
+                 -ms-flex-align: center;
+                 -webkit-align-items: center;
+                 align-items: center;
+                 -webkit-box-pack: center;
+                 -ms-flex-pack: center;
+                 -webkit-justify-content: center;
+                 justify-content: center;
+                 -webkit-flex-direction: column;
+                 -ms-flex-direction: column;
+                 flex-direction: column;
             }
+
+
+           @media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (-webkit-device-pixel-ratio: 2) {
+               #cover {
+                 height: 568px;
+               }
+           }
+           
+           /* iphone 6, 6s */
+           @media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (-webkit-device-pixel-ratio: 2) { 
+               #cover {
+                 height: 667px;
+               }
+           }
+           
+           /* iphone 7, 8 */
+           @media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (-webkit-device-pixel-ratio: 2) { 
+               #cover {
+                 height: 667px;
+               }
+           }
+           
+           /* iphone 6+, 6s+, 7+, 8+ */
+           @media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (-webkit-device-pixel-ratio: 3) { 
+               #cover {
+                 height: 736px;
+               }
+           }
+           
+           /* iphone X */
+           @media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (-webkit-device-pixel-ratio: 3) { }
+               #cover {
+                 height: 812px;
+               }
+           }
+
+           
 
         </style>
     </head>
