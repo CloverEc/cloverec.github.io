@@ -148,8 +148,30 @@
         const speed = 5;
         let frame = 0;
         var texture = new THREE.TextureLoader().load( 'textures/intro_sakura2.png' );
-        var texture2 = new THREE.TextureLoader().load( 'textures/box.png' );
+        var texture2 = new THREE.TextureLoader().load( 'textures/box1.png' );
+        var texture3 = new THREE.TextureLoader().load( 'textures/box2.png' );
+        var texture4 = new THREE.TextureLoader().load( 'textures/box3.png' );
+        var texture5 = new THREE.TextureLoader().load( 'textures/box4.png' );
+        var textures = [texture2,texture3,texture4,texture5]
+        function won_name(won){
+         
+            switch(won) {
+                case 0:
+                    return 'ReFa'
+                    break;
+                case 1:
+                    return 'Chulabi'
+                    break;
+                case 2:
+                    return 'Ohta'
+                    break;
+                case 3:
+                    return 'ECOTT COSME'
+                    break;
+            } 
+        }
         window.onload = init();
+        let swings = []
         function init() {
             document.getElementById("cover").addEventListener( 'touchstart',function(ev){
                 start();
@@ -166,13 +188,14 @@
             const directionalLight = new THREE.DirectionalLight(0xFFFFFF);
             directionalLight.position.set(1, 1, 1);
             scene.add(directionalLight);
-            var geo = new THREE.PlaneGeometry( 60, 60,10,10 ); 
+            var geo = new THREE.PlaneGeometry( 90, 90,10,10 ); 
             var wireframe = false;
             var geometry = new THREE.SphereGeometry(20, 8, 4, 0, Math.PI);
             var colors = [0xf4e8f2,0xf8d6e5,0xfad8e6]
-            const mat = new THREE.MeshBasicMaterial({wireframe: wireframe,map: texture2,transparent: true, side: THREE.DoubleSide });
             for (var i = 0; i < box_len + sakura_len; i++) {
+                const won = parseInt(Math.random() * 4)
                 const material = new THREE.MeshBasicMaterial({wireframe: wireframe,color: colors[parseInt(Math.random() * 3) ],map: texture,transparent: true, side: THREE.DoubleSide ,  alphaTest:0.1});
+                const mat = new THREE.MeshBasicMaterial({wireframe: wireframe,map: textures[won],transparent: true, side: THREE.DoubleSide });
                 if (i < sakura_len){
                     particle = new THREE.Mesh( geometry, material );
                     particle.rotation.y += Math.random() * 0.15;
@@ -190,18 +213,10 @@
                 particle.scale.y = 1.3;
                 particle.scale.z = 0.8;
 
+               particle.name = won_name(won) 
                scene.add( particle );
-
-                // targetList.push();
                 particles.push(particle); 
             }
-            setInterval(function(){
-                var j = 0
-                for(var i = 0; i<particles.length; i++) {
-                    swing(i,0)
-                }
-                j += 1;
-            }, 100);
             renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } ); 
             renderer.setPixelRatio( 1.5 );
             renderer.setSize( window.innerWidth, window.innerHeight );
@@ -223,7 +238,7 @@
         function onDocumentTouchStart( ev ) {
 
             if ( ev.touches.length == 1 ) {
-                ev.preventDefault();
+                // ev.preventDefault();
                 var rect = ev.target.getBoundingClientRect();    
                 mouse.x =  ev.touches[0].clientX - rect.left
                 mouse.y =  ev.touches[0].clientY - rect.top
@@ -235,19 +250,20 @@
                 var obj = ray.intersectObjects( particles,true)
 
                 clicked = 0
+                let name 
                 if ( obj.length > 0 ){                       
                     for(var i = 0; i < particles.length; i++){
                       if (particles[i].uuid == obj[0].object.uuid){
+                         name = particles[i].name
                          particles[i].position.y += 20;
                          particles[i].position.z -= 10;
                          clicked = i
-                         // particles[i].rotation.y += Math.random() * 0.2;
                       };
                        particles[i].position.y += 1;
                     }
                     count += 1;
                     setTimeout(()=>{
-                        location.href = 'https://www.baidu.com/';
+                        alert(name)
                     },1000)
                 } 
 
@@ -268,9 +284,16 @@
                    if (i < sakura_len){
                        particles[i].rotation.y += Math.random() * 0.4;
                        particles[i].rotation.x -= Math.random() * 0.2;
+                   }else{
+                       particles[i].rotationMove = +0.003
+                       if (particles[i].position.y < 0){
+                           particles[i].rotationMove = -0.01
+                       }
+                       particles[i].rotation.z += particles[i].rotationMove                       
                    }
                }
 
+               // console.log(swings.length)
                if(particles[i].position.y < -380 ){
                    particles[i].position.y +=  760;
                    particles[i].rotation.z =  0;
@@ -318,7 +341,7 @@
                }).start()
        }
        function swing(i){
-               particles[i].rotation.z += 0.01;
+               // particles[i].rotation.z += 0.01;
        }
 
         </script>
