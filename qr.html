@@ -62,7 +62,7 @@
             qrcode.decode(data)
         }
 
-        document.getElementById("action").addEventListener('click', function() {
+        // document.getElementById("action").addEventListener('click', function() {
             if(localStream) {
                 var canvas = document.getElementById('canvas');
                 var ctx = canvas.getContext('2d');
@@ -82,7 +82,7 @@
                 decodeImageFromBase64(canvas.toDataURL('image/png'), function(result) {
                     alert(result);
                 });
-            }
+            // }
        },false);
     </script>
 </html>
