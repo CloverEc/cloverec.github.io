@@ -80,7 +80,9 @@
                 ctx.drawImage(video, 0, 0, w, h);
 
                 decodeImageFromBase64(canvas.toDataURL('image/png'), function(result) {
-                    alert(result);
+                    if (result != 'error decoding QR Code'){
+                        alert(result);
+                    }
                 });
             }
           }, 1000)
