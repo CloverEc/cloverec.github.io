@@ -30,7 +30,6 @@
         <div style="display:none">
             <canvas id="canvas"></canvas>
         </div>
-        <input type="button" id="action" value="解析"/>
     </body>
 
     <script type="text/javascript">
@@ -63,6 +62,7 @@
         }
 
         // document.getElementById("action").addEventListener('click', function() {
+        setInterval(function(){
             if(localStream) {
                 var canvas = document.getElementById('canvas');
                 var ctx = canvas.getContext('2d');
@@ -82,7 +82,7 @@
                 decodeImageFromBase64(canvas.toDataURL('image/png'), function(result) {
                     alert(result);
                 });
-          }
-       // },false);
+            }
+          }, 1000)
     </script>
 </html>
