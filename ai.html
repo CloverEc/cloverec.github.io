@@ -81,13 +81,11 @@
                 let imageData  = ctx.getImageData(0,0,100,100);
 
 
-                const rgb24 = new Uint8Array((imageData.data.length / 4) * 3);
+                // const rgb24 = new Uint8Array((imageData.data.length / 4) * 3);
                 var i = 0;
                 var j = 0;
                 while( i < imageData.data.length){
-                    rgb24[j++] = imageData.data[i++];
-                    rgb24[j++] = imageData.data[i++];
-                    rgb24[j++] = imageData.data[i++];
+                    console.log(imageData.data[i])
                     i++;
                 }
 
