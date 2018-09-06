@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>大屏手机就是小米Max群</title>
+    <meta name="description" content="">
+    <script>!function(n){var e=n.document,t=e.documentElement,i=720,o=i/32,a="orientationchange"in n?"orientationchange":"resize",d=function(){var n=t.clientWidth||320,n=n>720?720:320>n?320:n;t.style.fontSize=n/o+"px"};e.addEventListener&&n.addEventListener(a,d,!1),d()}(window);</script>
+    	<link rel="stylesheet" type="text/css" href="style.css?160511"/>
+    <script
+  src="https://code.jquery.com/jquery-2.2.4.js"
+  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+  crossorigin="anonymous"></script>
+    <script src="https://hd.mi.com/f/zt/hd/2016051101/doT.min.js"></script>
+</head>
+<body>
+    <div class="chat">
+<!-- 	<div class="box_hd">
+		<div class="title-wrapper">
+			<h1 class="title">大屏手机就是小米Max群</h1>
+		</div>
+	</div> -->
+	<div class="box_bd scroll-wrapper">
+		<div class="scroll-content J_scrollContent">
+			<div class="chatContent" id="chatContent">
+			</div>
+		</div>
+	</div>
+	<div class="box_ft close">
+		<div class="input-wrapper">
+			<p class="J_noticeInput">点击提问</p>
+			<img src="http://c1.mifile.cn/f/i/hd/2016051101/input-down.png" alt="">
+		</div>
+
+		<div class="choice-wrapper J_choiceWrapper">
+			<ul class="main-choice J_choice J_mainChoice" data-choice="0">
+				<li class="J_liNext li-3" data-target-dialog="2" data-target-choice="2_1">
+					<a href="javascript:void(0);">UHA是什么</a>
+				</li>
+				<!-- <li class="J_liNext li&#45;3" data&#45;target&#45;dialog="3"> -->
+				<!-- 	<a href="javascript:void(0);">电量多大</a> -->
+				<!-- </li> -->
+				<li class="J_liNext li-3" data-target-dialog="8">
+					<a href="javascript:void(0);">求红包</a>
+				</li>
+			</ul>
+
+			<ul class="J_choice" data-choice="2_1">
+				<li class="J_liNext li-3 no-border bg-trsp" data-target-dialog="2_1">
+
+					<a href="javascript:void(0);">
+						<img src="niu_01.png" alt="特浓牛奶糖">
+						<p>特浓牛奶糖</p>
+					</a>
+				</li>
+				<li class="J_liNext li-3 no-border bg-trsp" data-target-dialog="2_2">
+
+					<a href="javascript:void(0);">
+						<img src="niu_02.png" alt="特浓草莓牛奶糖">
+						<p>特浓草莓牛奶糖</p>
+					</a>
+				</li>
+				<li class="J_liNext li-3 no-border bg-trsp" data-target-dialog="2_3">
+
+					<a href="javascript:void(0);">
+						<img src="niu_03.png" alt="特浓巧克力牛奶糖">
+						<p>特浓巧克力牛奶糖</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div style="display: none;" class="J_map">
+	<div class="map-wrapper J_mapWrapper">
+		<div class="map">
+			<div class="map-pointer"></div>
+		</div>
+		<p>驾驶总时长：<span class="J_tourtime">0</span> 小时</p>
+	</div>
+</div>
+
+<script>
+var me = {
+	id: 'me', // 写死的，不用改
+	name: '' || 'UHA朋友', // 用户昵称
+	avatar: '' || 'uha.jpg', // 用户头像图片 url
+	userId: '', // 用户id
+	registered: false // 用户是否已经预约
+};
+var _imgUrl = 'http://c1.mifile.cn/f/i/hd/2016051101/';
+var gif = {
+	welcome: '<img src="' + _imgUrl + 'welcome.gif' + '">',
+	lol: '<img src="' + _imgUrl + 'lol.gif' + '">',
+	cry: '<img src="' + _imgUrl + 'cry.gif' + '">',
+};
+var _animation = {
+	tour: $('.J_map').html(),
+};
+var _userName = me.name;
+var _dialog = {};
+var _members = {};
+
+function geneDialog(userName) {
+	var defaultMembers = {
+		lj: {
+			id: 'lj',
+			name: 'Manu MA',
+			avatar: '127379.jpeg',
+		},
+		lwq: {
+			id: 'lwq',
+			name: 'Paul Stelzer',
+			avatar: '20501666.jpeg',
+		},
+		lb: {
+			id: 'lb',
+			name: 'Justin Willis',
+			avatar: '8823093.jpeg',
+		},
+		zgp: {
+			id: 'zgp',
+			name: 'Amit Moryossef',
+			avatar: '5757359.jpeg',
+		},
+		wc: {
+			id: 'wc',
+			name: 'Brandy Carney',
+			avatar: '8823093.jpeg',
+		},
+	};
+	_members = $.extend(_members, defaultMembers);
+
+
+	// 引导对话
+	_dialog.d0 = [{
+		type: 'plain',
+		author: _members.lj,
+		content: userName + ' 你好，are you ok？',
+		pause: 2000,
+	}, {
+		type: 'plain',
+		author: _members.lwq,
+		content: '欢迎 ' + userName + gif.welcome + gif.welcome + gif.welcome,
+		flag: 'emoji-welcome',
+	}, {
+		type: 'plain',
+		author: _members.lb,
+		content: '欢迎' + gif.welcome + gif.welcome + gif.welcome + gif.welcome + gif.welcome,
+	}, {
+		type: 'plain',
+		author: _members.zgp,
+		content: '欢迎' + gif.welcome + gif.welcome + gif.welcome + gif.welcome,
+	},
+	];
+// 关于UHA的对话
+    _dialog.d2 = [{
+      type: 'plain',
+      author: _members.me,
+      content: 'UHA是什么东东？很甜很好吃的糖果',
+    }, {
+      type: 'plain',
+      author: _members.lwq,
+      content: '海内存知己，天涯吃UHA！',
+    }, {
+      type: 'plain',
+      author: _members.zgp,
+      content: '日本有名糖果，不吃不知道，一吃吓一跳，真的好吃 @王川 吃了吗？',
+      pause: 3000,
+    }, {
+      type: 'plain',
+      author: _members.wc,
+      content: '我统计了一下，@' + userName + ' 给你三个选项，要不你来猜猜？',
+    },];
+
+	
+	// 关于求红包的对话
+	_dialog.d8 = [{
+		type: 'plain',
+		author: _members.me,
+		content: '我听了这么多，老板们发个红包呗',
+	}, {
+		type: 'system',
+		content: _members.lj.name + '退出群聊',
+		pause: 500,
+	}, {
+		type: 'system',
+		content: _members.lwq.name + '退出群聊',
+		pause: 400,
+	}, {
+		type: 'system',
+		content: _members.zgp.name + '退出群聊',
+		pause: 700,
+	}, {
+		type: 'system',
+		content: _members.wc.name + '退出群聊',
+		pause: 400,
+	},];
+	
+  // 关于 UHA - 特浓牛奶糖的对话
+  _dialog.d2_1 = [{
+      type: 'plain',
+      author: _members.me,
+      content: '我觉得特浓牛奶糖都好吃，一吃就上瘾！',
+  }, {
+      type: 'plain',
+      author: _members.wc,
+      content: '那你可就小UHA特浓牛奶糖了，不但吃了后会上瘾，还会爱上ta！',
+  }, {
+      type: 'plain',
+      author: _members.me,
+      content: '果然是特浓牛奶糖king啊！',
+  },];
+
+// 关于 UHA - 特浓草莓牛奶糖 的对话
+    _dialog.d2_2 = [{
+      type: 'plain',
+      author: _members.me,
+      content: '我觉得特浓草莓牛奶糖都好吃，一吃就上瘾！',
+    }, {
+      type: 'plain',
+      author: _members.wc,
+      content: '那你可就小UHA特浓草莓牛奶糖了，不但吃了后会上瘾，还会爱上ta！',
+      pause: 3000,
+    }, {
+      type: 'plain',
+      author: _members.me,
+      content: '果然是特浓草莓牛奶糖king啊！',
+    },];
+
+// 关于 UHA - 特浓巧克力牛奶糖 的对话
+    _dialog.d2_3 = [{
+      type: 'plain',
+      author: _members.me,
+      content: '我觉得特浓巧克力牛奶糖都好吃，一吃就上瘾！',
+    }, {
+      type: 'plain',
+      author: _members.wc,
+      content: '那你可就小UHA特浓巧克力牛奶糖了，不但吃了后会上瘾，还会爱上ta！',
+      pause: 3000,
+    }, {
+      type: 'plain',
+      author: _members.me,
+      content: '果然是特浓巧克力牛奶糖king啊！',
+    },];
+}
+
+$.fn.scrollSmooth = function(scrollHeight, duration) {
+	var $el = this;
+	var el  = $el[0];
+	var startPosition = el.scrollTop;
+	var delta = scrollHeight  - startPosition;
+	var startTime = Date.now();
+	function scroll() {
+		var fraction = Math.min(1, (Date.now() - startTime) / duration);
+		el.scrollTop = delta * fraction + startPosition;
+		if(fraction < 1) {
+			setTimeout(scroll, 10);
+		}
+	}
+	scroll();
+};
+
+$.fn.goSmooth = function(height, duration) {
+	var $el = this;
+	var startPosition = 1 * $el.css('margin-bottom').replace('px', '');
+	var delta = height  - startPosition;
+	var startTime = Date.now();
+	function scroll() {
+		var fraction = Math.min(1, (Date.now() - startTime) / duration);
+		$el.css('margin-bottom', delta * fraction + startPosition);
+		if(fraction < 1) {
+			setTimeout(scroll, 10);
+		}
+	}
+	scroll();
+};
+
+var $chat = $('#chatContent');
+
+function Queue() {};
+Queue.prototype = {
+	add: function(el) {
+		if (this._last) {
+			this._last = this._last._next = { //_last是不断变的
+				el: el,
+				_next: null //设置_last属性表示最后一个元素，并且让新增元素成为它的一个属性值
+			}
+		} else {
+			this._last = this._first = { //我们要设置一个_first属性表示第一个元素
+				el: el,
+				_next: null
+			}
+		}
+		return this;
+	}
+}
+
+function copyQueue(p) {
+	var queue = new Queue;
+	for (var i = 0; i < p.length; i++) {
+		queue.add(p[i]);
+	}
+	return queue;
+};
+
+function activeInput() {
+	$('.box_ft').find('.input-wrapper').addClass('J_inputWrapper');
+}
+
+function deactiveInput() {
+	$('.box_ft').find('.input-wrapper').removeClass('J_inputWrapper');
+}
+
+	function showChoice(choice, delay) {
+		$('.J_noticeInput').hide();
+
+		if (delay === null) {
+			delay = 100;
+		}
+		if (!choice) {
+			choice = '0';
+		}
+
+		setTimeout(function() {
+			$('.J_choiceWrapper').addClass('opened').find('.J_choice').removeClass('choosen').hide();
+			$('.J_inputWrapper').addClass('opened');
+			var $choiceUl = $('.J_choiceWrapper').find('.J_choice').filter('[data-choice="' + choice + '"]');
+			var cH = $choiceUl.addClass('choosen').show().height();
+			var ftH = $('.box_ft').height();
+			var sOH = $('#chatContent').height();
+
+			$('.box_bd').goSmooth(cH, 100);
+			$('.J_scrollContent').scrollSmooth(ftH + sOH, 300);
+
+		}, delay);
+	}
+
+	function hideChoice() {
+		$('.box_bd').goSmooth(0, 100);
+		$('.J_inputWrapper').removeClass('opened');
+		$('.J_choiceWrapper').removeClass('opened');
+	}
+
+	function playTour() {
+		$('.J_mapWrapper').addClass('animate');
+		var i = 0;
+		var interval = setInterval(function() {
+			if (i >= 9) {
+				$('.J_tourtime').html(8);
+				clearInterval(interval);
+			} else {
+				i++;
+				$('.J_tourtime').html(i%9);
+			}
+		}, 5000/9);
+
+	}
+
+function showDialog(dialog, cb) {
+		// 显示对话的时候，菜单栏不可点
+		deactiveInput();
+
+		var message = copyQueue(dialog)._first;
+		var tpl = doT.template($('#messageTpl').html());
+
+		function loop(delay) {
+			// speed
+			if (delay == undefined) {
+				// random delay between messages
+				delay = Math.random() * 1000 + 600;
+				//delay = Math.random() * 50 + 50;
+			}
+
+			var timeout = setTimeout(function() {
+				if (message) {
+					// 显示 message
+					var messageHtml = tpl([message.el]);
+					$chat.append(messageHtml);
+					
+					// 自动滚动
+					var viewH = $('.J_scrollContent').height();
+					var contentH = $chat.height();				
+					if (contentH > viewH) {
+						$('.J_scrollContent').scrollSmooth(contentH - viewH + 16, 300)
+					}
+					
+					// 执行附加效果
+					if (message.el.flag) {
+						var flag = message.el.flag;
+
+						switch (flag) {
+							case 'animate-tour':
+								playTour();
+								break;
+							default:
+								break;
+						}
+					}
+
+					// 特别语句的特殊delay
+					if(message.el.pause != undefined) {
+						loop(message.el.pause);
+					} else {
+						loop();
+					}
+
+					// 指向下一句
+					message = message._next;
+
+				} else {
+					activeInput();
+					clearTimeout(timeout);
+					cb && cb();
+				}
+			}, delay);
+		};
+
+		loop(0);
+	};
+
+$(document).ready(function() {	
+	_members.me = me;
+	geneDialog(_userName);
+	
+	//展示默认的引导对话
+	showDialog(_dialog['d0'], function() {
+		$('.J_noticeInput').show();
+	});
+	
+	// 不同选项点击触发不同的对话和下级选项
+		$('.box_ft').on('click', '.J_choice .J_liNext', function(e) {
+			e.preventDefault();
+			var $choice = $(this);
+			var dialogId = $choice.attr('data-target-dialog');
+			var choiceId = $choice.attr('data-target-choice');
+			var continueDialog = ($choice.attr('data-continue') !== 'false');
+
+			// if ($choice.hasClass('disabled')) {
+			// 	return;
+			// }
+			$('.J_mainChoice').find('.J_liNext[data-target-dialog="' + dialogId + '"]').addClass('disabled');
+
+			if (!choiceId) {
+				choiceId = '0';
+			}
+
+			hideChoice();
+			clearTimeout(window.waitUser);
+
+			showDialog(_dialog['d' + dialogId], function() {
+				if (continueDialog) {
+					showChoice(choiceId, 500);
+					// 用户若干秒没操作的话，提示文案
+					window.waitUser = setTimeout(function() {
+						var random = Math.floor( (Math.random() * 3) + 1);
+						showDialog(_dialog['dr_' + random]);
+					}, 30000);
+				}
+			});
+
+			if ( !$('.J_mainChoice').find('.J_liNext').not('.disabled') ) {
+				clearTimeout(window.waitUser);
+			}
+		});
+
+		//显示或者隐藏菜单
+		$(document).on('click', '.J_inputWrapper', function() {
+			var choosen = $('.J_choice').filter('.choosen').attr('data-choice');
+			if ($('.J_choiceWrapper').hasClass('opened')) {
+				hideChoice();
+			} else {
+				showChoice(choosen, 0);
+			}
+		});
+
+		// 对话里的图片点击时会全屏显示
+		$(document).on('click', '.J_img', function(e){
+			var $target = $(this);
+			var imgUrl = $target.attr('src').replace(/\.(jpg|jpeg|png|gif)/, '-hd.$1');
+
+			if (imgUrl) {
+			// 全屏显示照片
+			loadImg(imgUrl);
+			$('#J_fullPics').show();
+		}
+
+	});
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+<script id="messageTpl" type="text/x-dot-template">
+		  	{{~it :message:index}}
+		  	<div class="clearfix">
+		  		{{? message.type == 'system'}}
+		  		<div class="message">
+		  			<p class="message_system">
+		  				<span class="content">{{=message.content}}</span>
+		  			</p>
+		  		</div>
+		  		{{??}}
+
+		  		<div class="message {{? message.author.id == 'me'}}me{{??}}others{{?}}">
+		  			<div class="avatar" data-author-id="{{=message.author.id}}">
+		  				<img src="{{=message.author.avatar}}" alt="{{=message.author.name}}">
+		  			</div>
+		  			<div class="content">
+		  				<p class="author_name">{{=message.author.name}}</p>
+		  				{{? message.type == 'plain'}}
+		  				<div class="bubble {{? message.author.id == 'me'}} bubble_primary right{{??}} bubble_default left{{?}}">
+		  					<div class="bubble_cont">
+		  						<div class="{{=message.type}}">
+		  							<pre>{{=message.content}}</pre>
+		  						</div>
+		  					</div>
+		  				</div>
+		  				{{?? message.type == 'picture'}}
+		  				<div class="bubble {{? message.author.id == 'me'}} right{{??}} left{{?}} bubble_image">
+		  					<div class="bubble_cont">
+		  						<div class="{{=message.type}}">
+		  							{{? message.extra == 'gallery'}}
+		  							<img class="J_galleryShow" data-gallery="1" src="{{=message.content}}" />
+		  							{{??}}
+		  							<img class="J_img" src="{{=message.content}}" />
+		  							{{?}}
+		  						</div>
+		  					</div>
+		  				</div>
+		  				{{?? message.type == 'video'}}
+		  				<div class="bubble {{? message.author.id == 'me'}} right{{??}} left{{?}} bubble_image">
+		  					<div class="bubble_cont">
+		  						<div class="{{=message.type}}">
+		  							<img class="J_fpVideo" src="{{=message.content.poster}}" data-src="{{=message.content.video}}" alt="">
+		  						</div>
+		  					</div>
+		  				</div>
+		  				{{?? message.type == 'animation'}}
+		  				<div class="bubble {{? message.author.id == 'me'}} right{{??}} left{{?}} bubble_image">
+		  					<div class="bubble_cont">
+		  						<div class="{{=message.type}}">
+		  							{{=message.content}}
+		  						</div>
+		  					</div>
+		  				</div>
+		  				{{?}}
+		  			</div>
+		  		</div>
+		  		{{?}}
+
+		  	</div>
+		  	{{~}}
+		  </script>
+</body>
+</html>
