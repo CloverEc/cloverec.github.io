@@ -7,6 +7,49 @@
     <meta name="description" content="">
     <script>!function(n){var e=n.document,t=e.documentElement,i=720,o=i/32,a="orientationchange"in n?"orientationchange":"resize",d=function(){var n=t.clientWidth||320,n=n>720?720:320>n?320:n;t.style.fontSize=n/o+"px"};e.addEventListener&&n.addEventListener(a,d,!1),d()}(window);</script>
     	<link rel="stylesheet" type="text/css" href="style.css?160511"/>
+      <script>
+      
+	var defaultMembers = {
+		lj: {
+			id: 'lj',
+			name: 'Manu MA',
+			avatar: '127379.jpeg',
+		},
+		lwq: {
+			id: 'lwq',
+			name: 'Paul Stelzer',
+			avatar: '20501666.jpeg',
+		},
+		lb: {
+			id: 'lb',
+			name: 'Justin Willis',
+			avatar: '8823093.jpeg',
+		},
+		zgp: {
+			id: 'zgp',
+			name: 'Amit Moryossef',
+			avatar: '5757359.jpeg',
+		},
+		wc: {
+			id: 'wc',
+			name: 'Brandy Carney',
+			avatar: '8823093.jpeg',
+		},
+	};
+  preloadImage('grinning-facebook-emoticon.png')
+  preloadImage('uha.jpg')
+  for (var variable in defaultMembers) {
+      preloadImage(defaultMembers[variable].avatar);
+  }
+
+
+      function preloadImage(url)
+      {
+          var img=new Image();
+          img.src=url;
+      }
+      
+      </script>
     <script src="jquery-2.2.4.js" ></script>
     <script src="doT.min.js"></script>
 </head>
@@ -100,33 +143,6 @@ var _dialog = {};
 var _members = {};
 
 function geneDialog(userName) {
-	var defaultMembers = {
-		lj: {
-			id: 'lj',
-			name: 'Manu MA',
-			avatar: '127379.jpeg',
-		},
-		lwq: {
-			id: 'lwq',
-			name: 'Paul Stelzer',
-			avatar: '20501666.jpeg',
-		},
-		lb: {
-			id: 'lb',
-			name: 'Justin Willis',
-			avatar: '8823093.jpeg',
-		},
-		zgp: {
-			id: 'zgp',
-			name: 'Amit Moryossef',
-			avatar: '5757359.jpeg',
-		},
-		wc: {
-			id: 'wc',
-			name: 'Brandy Carney',
-			avatar: '8823093.jpeg',
-		},
-	};
 	_members = $.extend(_members, defaultMembers);
 
 
