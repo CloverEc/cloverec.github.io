@@ -7,10 +7,7 @@
     <meta name="description" content="">
     <script>!function(n){var e=n.document,t=e.documentElement,i=720,o=i/32,a="orientationchange"in n?"orientationchange":"resize",d=function(){var n=t.clientWidth||320,n=n>720?720:320>n?320:n;t.style.fontSize=n/o+"px"};e.addEventListener&&n.addEventListener(a,d,!1),d()}(window);</script>
     	<link rel="stylesheet" type="text/css" href="style.css?160511"/>
-    <script
-  src="https://code.jquery.com/jquery-2.2.4.js"
-  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
-  crossorigin="anonymous"></script>
+    <script src="jquery-2.2.4.js" ></script>
     <script src="doT.min.js"></script>
 </head>
 <body>
@@ -29,7 +26,7 @@
 	<div class="box_ft close">
 		<div class="input-wrapper">
 			<p class="J_noticeInput">点击提问</p>
-			<img src="http://c1.mifile.cn/f/i/hd/2016051101/input-down.png" alt="">
+			<img src="input-down.png" alt="">
 		</div>
 
 		<div class="choice-wrapper J_choiceWrapper">
@@ -488,26 +485,7 @@ $(document).ready(function() {
 
 	});
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </script>
-
-
-
 <script id="messageTpl" type="text/x-dot-template">
 		  	{{~it :message:index}}
 		  	<div class="clearfix">
