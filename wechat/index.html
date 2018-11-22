@@ -55,10 +55,24 @@
       }
       
       </script>
+      <style>
+div#background {
+  background:  url(./uha_background.jpg)  no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+  background-size: cover;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 12px;
+  overflow: hidden
+}
+      </style>
     <script src="jquery-2.2.4.js" ></script>
     <script src="doT.min.js"></script>
 </head>
 <body>
+    <div id="background" ></div>
+    <div style="display:none;">
     <div class="chat">
 <!-- 	<div class="box_hd">
 		<div class="title-wrapper">
@@ -125,6 +139,7 @@
 		<p>驾驶总时长：<span class="J_tourtime">0</span> 小时</p>
 	</div>
 </div>
+    </div>
 
 <script>
 var me = {
