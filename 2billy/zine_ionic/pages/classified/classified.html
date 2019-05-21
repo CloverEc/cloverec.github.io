@@ -1,0 +1,145 @@
+<!--
+  Generated template for the ClassifiedPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>クラシファイド</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content  padding no-margin>
+  <div *ngIf="!isLoad"  style="height:100%;width:100%;margin: 0 auto ;text-align:center;">
+    <ion-spinner color="zine" style="margin-top:20%;"></ion-spinner>
+  </div>
+  <span *ngIf="isLoad">
+  <ion-list no-margin no-padding>
+    <ion-item no-padding *ngIf="post.user" tappable (click)="openUserDetail(post.user.id)">
+      <ion-avatar no-padding item-start>
+        <img src="{{post.user.avatar}}">
+      </ion-avatar>
+      <div>{{post.user.name}}</div>
+      <p>{{post.updated_at|date:'yyyy-MM-dd'}}</p> 
+    </ion-item> 
+    <ion-item no-margin no-padding *ngIf="post">
+      <p> {{post.title}} </p>
+    </ion-item>
+    <ion-card *ngIf="post.image">
+      <img src="{{'http://shanghai-zine.com/system/uploads/post/'+post.image}}">
+    </ion-card>
+  </ion-list>
+  <ion-list>
+    <ion-item *ngIf="post.bbs_category_id == 3">
+      <div *ngIf="post.sell_price">
+        <div>【希望売却価格】&nbsp;&nbsp;{{post.sell_price}}</div>
+      </div>
+    </ion-item>
+    <ion-item *ngIf="post.bbs_category_id == 4">
+      <div *ngIf="post.buy_price">
+        <div>【希望買い取り価格】 &nbsp;&nbsp;{{post.buy_price}}</div>
+      </div>
+    </ion-item>
+    <ion-item *ngIf="post.bbs_category_id == 5">
+      <div *ngIf="post.renting_category">
+        <div>【不動産種類】 &nbsp;&nbsp;{{post.renting_category}}</div>
+      </div>
+      <div *ngIf="post.renting_type">
+        <div>【間取り、面積】 &nbsp;&nbsp;{{post.renting_type}}</div>
+      </div>
+      <div *ngIf="post.renting_area">
+        <div>【エリア】 &nbsp;&nbsp;{{post.renting_area}}</div>
+      </div>
+      <div *ngIf="post.renting_price">
+        <div>【家賃】 &nbsp;&nbsp;{{post.renting_price}}</div>
+      </div>
+    </ion-item>
+    <ion-item *ngIf="post.bbs_category_id == 6">
+      <div *ngIf="post.employ_state">
+        <div>【雇用形態】 &nbsp;&nbsp;{{post.employ_state}}</div>
+      </div>
+      <div *ngIf="post.employ_industry">
+        <div>【業種】 &nbsp;&nbsp;{{post.employ_industry}}</div>
+      </div>
+      <div *ngIf="post.employ_position">
+        <div>【職種】 &nbsp;&nbsp;{{post.employ_position}}</div>
+      </div>
+      <div *ngIf="post.employ_price">
+        <div>【待遇】 &nbsp;&nbsp;{{post.employ_price}}</div>
+      </div>
+    </ion-item>
+    <ion-item *ngIf="post.bbs_category_id == 7">
+      <div *ngIf="post.work_state">
+        <div>【希望雇用形態】 &nbsp;&nbsp;{{post.work_state}}</div>
+      </div>
+      <div *ngIf="post.work_industry">
+        <div>【希望業種】 &nbsp;&nbsp;{{post.work_industry}}</div>
+      </div>
+      <div *ngIf="post.work_position">
+        <div>【希望職種】 &nbsp;&nbsp;{{post.work_position}}</div>
+      </div>
+      <div *ngIf="post.work_price">
+        <div>【希望待遇】 &nbsp;&nbsp;{{post.work_price}}</div>
+      </div>
+    </ion-item>
+    <ion-item *ngIf="post.bbs_category_id == 8">
+      <div *ngIf="post.meet_name">
+        <div>【サークル名】 &nbsp;&nbsp;{{post.meet_name}}</div>
+      </div>
+      <div *ngIf="post.meet_rate">
+        <div>【開催頻度】&nbsp;&nbsp;{{post.meet_rate}}</div>
+      </div>
+    </ion-item>
+    <ion-item *ngIf="post.bbs_category_id == 10">
+      <div *ngIf="post.learn_rate">
+        <div>【希望頻度】 &nbsp;&nbsp;{{post.learn_rate}}</div>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <div text-wrap [innerHTML] ='content'></div>
+      </ion-label>
+    </ion-item>
+    <ion-item no-padding *ngFor="let comment of comments">
+      <ion-avatar no-padding item-left  text-wrap>
+        <img src="{{comment.avatar}}">
+      </ion-avatar>
+      <div>{{comment.user_name}}</div>
+      <p text-wrap style="white-space: initial;"> {{comment.cont }}</p>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label stacked>投稿する</ion-label>
+      <ion-input [(ngModel)]="comment"></ion-input>
+    </ion-item>
+  </ion-list>
+  </span>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button ion-button color="primary" (click)="submitComment()" full>投稿</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button *ngIf="isAuthor" ion-button color="danger" (click)="deleteBBS()" full>削除する</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button ion-button color="danger" full (click)="openConsult()" >メッセージを送る</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-fab *ngIf="isApp" right bottom>
+    <button ion-fab ><ion-icon name="md-share"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button (click)="shareWechat('SESSION')" color="wechat" ion-fab><span class="icon-wechat" ></span></button>
+      <button (click)="shareWechat('TIMELINE')" color="wechat" ion-fab><span style="font-size:130%;" class="icon-timeline"></span></button>
+      <button (click)="shareSocial()" color="facebook" ion-fab><ion-icon  style="font-size:120%;"name="md-share"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+  <ion-fab  *ngIf="!isApp" right bottom>
+    <button ion-fab  (click)="openHome()" ><ion-icon style="margin-left:0px;"name="home"></ion-icon></button>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,45 @@
+
+<ion-header no-margin  no-border>
+  <ion-navbar>
+    <ion-buttons end *ngIf="showSkip">
+      <button ion-button (click)="startApp()" color="primary">スキップ</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding no-margin no-bounce>
+  <ion-slides #slides (ionSlideWillChange)="onSlideChangeStart($event)" no-padding  pager>
+      <ion-slide no-padding>
+        <img src="assets/images/manual_1.png" class="slide-image"/>
+      </ion-slide>
+
+      <ion-slide no-padding>
+        <img src="assets/images/manual_2.png" class="slide-image"/>
+      </ion-slide>
+
+      <ion-slide no-padding>
+        <img src="assets/images/manual_3.png" class="slide-image"/>
+      </ion-slide>
+
+      <ion-slide no-padding>
+        <img src="assets/images/manual_4.png" class="slide-image"/>
+      </ion-slide>
+
+      <ion-slide no-padding>
+        <img src="assets/images/manual_5.png" class="slide-image"/>
+      </ion-slide>
+
+      <ion-slide no-padding>
+        <img src="assets/images/manual_6.png" class="slide-image"/>
+      </ion-slide>
+      <ion-slide no-padding>
+        <img src="assets/images/manual_7.png" class="slide-image"/>
+        <button ion-button icon-right large clear (click)="startApp()">
+            始める
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+      </ion-slide>
+
+  </ion-slides>
+</ion-content>
+

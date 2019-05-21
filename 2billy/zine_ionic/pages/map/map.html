@@ -1,0 +1,33 @@
+<!--
+  Generated template for the Map page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>地図</ion-title>
+    <ion-buttons end>
+      <button *ngIf="appMap" tappable  (click)="onMapApp()" ion-button icon-only>
+        <ion-icon name="map-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content no-padding no-margin class="outer-content" >
+  <div *ngIf="!isLoad"  style="height:100%;width:100%;margin: 0 auto ;text-align:center;">
+    <ion-spinner color="zine" style="margin-top:20%;"></ion-spinner>
+  </div>
+  <span *ngIf="isLoad"  style="">
+  <iframe *ngIf="isUrl" [src]="mapURL()" frameborder="0" style="
+     margin-top: -45px;
+      width: 100%;
+      height: 110%;
+      overflow:hidden;
+      border: none;
+      display:block; "  ></iframe>
+  </span>
+</ion-content>

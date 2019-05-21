@@ -1,0 +1,51 @@
+<!--
+  Generated template for the Campaigns page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>お得なキャンペーン　一覧</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="outer-content" no-padding>
+  <div padding>
+    <ion-segment>
+      <ion-segment-button (click)="presentArea($event)">
+        {{selectedArea}}
+      </ion-segment-button>
+      <ion-segment-button (click)="presentCategory($event)">
+        {{selectedCategory}}
+      </ion-segment-button>
+      <ion-segment-button (click)="presentType($event)">
+        {{selectedCoupon}}
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <ion-list no-padding inset>
+    <button no-padding ion-item *ngFor="let campaign of campaigns" (click)="openCampaign(campaign.id)">
+      <ion-thumbnail item-left justify-content-center>
+        <img src="{{campaign.image }}" class="campaign-img" style="margin-left:4px;
+        vertical-align:middle;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        ">
+      </ion-thumbnail>
+      <h5> {{ campaign.name }}<br> </h5>
+      <p style="display:table;"><span style=" vertical-align: middle; display: table-cell;border: 1px solid #ffb400;font-size:0.9rem; color:#ffb400">&nbsp;店名&nbsp;</span>&nbsp;
+       {{campaign.shop_name}}
+      </p>
+      <p style="font-size:0.9rem">
+        <span *ngFor="let area of campaign.shop_area">{{area.area_name}}</span>
+        <span *ngFor="let category of campaign.shop_category">{{category.cate_name}}</span>
+      </p>
+    </button> 
+  </ion-list> 
+  <ion-infinite-scroll [enabled]="scrollEnable" (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,132 @@
+<!--
+  Generated template for the Campaign page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<style>
+.item-inner { display:table;  }
+ion-label { display: table-cell;    vertical-align: middle;  }
+ion-note { display: table-cell;     vertical-align: middle; font-size:80%; }
+pre {     white-space: pre-wrap;  }
+</style>
+<ion-header>
+  <ion-navbar>
+    <ion-title>お得なキャンペーン</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+  <div *ngIf="!isLoad"  style="height:100%;width:100%;margin: 0 auto ;text-align:center;">
+    <ion-spinner color="zine" style="margin-top:20%;"></ion-spinner>
+  </div>
+  <span *ngIf="isLoad">
+  <ion-card padding margin *ngIf="campaign">
+    <ion-card-header text-wrap>
+      {{campaign.name}}
+    </ion-card-header>
+    <img src="{{campaign.image}}"style="margin-left:4px;">
+  </ion-card>
+  <ion-card *ngIf="campaign">
+    <pre padding style="white-space: pre-wrap;" [innerHTML] = "campaign.introduce"></pre>
+  </ion-card>
+  <ion-card padding *ngIf="firstCouponImg">
+    <img src="{{firstCouponImg}}">
+  </ion-card>
+  <ion-card padding *ngIf="otherCouponImgs && isMoreImgs">
+    <img *ngFor="let img of otherCouponImgs" src="{{img}}" style="margin:8px;">
+  </ion-card>
+  <div style="text-align: center;" tappable  (click)="toggleMore()">
+    <div *ngIf="otherCouponImgs && isMoreImgs == false">画像をもっとみる</div>
+    <div>
+      <ion-icon *ngIf="otherCouponImgs && isMoreImgs == false" name="arrow-down"></ion-icon>
+      <ion-icon *ngIf="isMoreImgs" name="arrow-up"></ion-icon>
+    </div>
+  </div>
+
+  <ion-list inset *ngIf="campaign">
+    &nbsp;<b>店舗情報</b>
+    <ion-item no-padding>
+      <ion-label>&nbsp;店名</ion-label>
+      <ion-note item-end>{{campaign.shop_name}}</ion-note>
+    </ion-item>
+    <button no-padding ion-item (click)="onMap()">
+      <ion-label style="display: inline-block; vertical-align: middle;">&nbsp;住所</ion-label>
+      <p text-wrap style="display: inline-block; vertical-align: middle;"item-end>{{campaign.address}}</p>
+    </button>
+    <ion-item *ngIf="isApp" no-padding (click)="onTelephone(campaign.shop_tel)"  >
+      <ion-label>&nbsp;電話番号</ion-label>
+      <ion-note item-end>{{campaign.shop_tel}}</ion-note>
+    </ion-item>
+    <ion-item *ngIf="!isApp" no-padding  >
+      <ion-label>&nbsp;電話番号</ion-label>
+      <ion-note item-end><a href="tel:{{campaign.shop_tel}}">{{campaign.shop_tel}}</a></ion-note>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label>&nbsp;営業時間</ion-label>
+      <ion-note text-wrap item-end>{{campaign.business_hours}}</ion-note>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label>&nbsp;時間</ion-label>
+      <ion-note item-end>{{campaign.during_time}}</ion-note>
+    </ion-item>
+    <ion-item no-padding>
+      <ion-label>&nbsp;予約時間</ion-label>
+      <ion-note item-end>{{campaign.meal_time}}</ion-note>
+    </ion-item>
+  </ion-list>
+  <ion-list inset *ngIf="campaign">
+    &nbsp;<b>店舗</b>
+    <ion-item-sliding>
+      <ion-item no-padding (click)="openShop(campaign.shop_id)">
+        <ion-thumbnail no-padding item-left>
+          <img src="{{campaign.shop_image}}" style="margin-left:4px;">
+        </ion-thumbnail>
+        <h3>店名 {{campaign.shop_name}}</h3>
+        <p >
+          <span *ngFor="let area of campaign.shop_area">
+            {{area.area_name}}
+          </span>
+          <span *ngFor="let cate of campaign.shop_category">
+            {{cate.cate_name}}
+          </span>
+        </p>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-list no-padding  *ngIf="campaigns" inset>
+    &nbsp;<b>お得なキャンペーン</b>
+    <button no-padding ion-item *ngFor="let campaign of campaigns" (click)="openCampaign(campaign)">
+      <ion-thumbnail item-left>
+        <img src="{{campaign.image }}" style="margin-left:4px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        ">
+      </ion-thumbnail>
+      <h5> {{ campaign.name }}<br> </h5>
+      <p style="display:table;"><span style=" vertical-align: middle; display: table-cell;border: 1px solid #ffb400;font-size:0.9rem; color:#ffb400">&nbsp;店名&nbsp;</span>&nbsp;
+       {{campaign.shop_name}}
+      </p>
+      <p style="font-size:0.9rem">
+        <span *ngFor="let area of campaign.shop_area">{{area.area_name}}</span>
+        <span *ngFor="let category of campaign.shop_category">{{category.cate_name}}</span>
+      </p>
+    </button> 
+  </ion-list> 
+  <p padding-left padding-right>
+    <button ion-button color="zine" block (click)="openCoupons()">もっと見る</button>
+  </p>
+  </span>
+  <ion-fab *ngIf="isApp" right bottom>
+    <button ion-fab ><ion-icon name="md-share"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button (click)="shareWechat('SESSION')" color="wechat" ion-fab><span class="icon-wechat" ></span></button>
+      <button (click)="shareWechat('TIMELINE')" color="wechat" ion-fab><span style="font-size:130%;" class="icon-timeline"></span></button>
+      <button (click)="shareSocial()" color="facebook" ion-fab><ion-icon  style="font-size:120%;"name="md-share"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+  <ion-fab  *ngIf="!isApp" right bottom>
+    <button ion-fab  (click)="openHome()" ><ion-icon style="margin-left:0px;"name="home"></ion-icon></button>
+  </ion-fab>
+</ion-content>

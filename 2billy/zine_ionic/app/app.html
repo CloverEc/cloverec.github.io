@@ -1,0 +1,57 @@
+
+<ion-split-pane>
+<style>
+.item-ios ion-avatar img {
+width:100px;height:100px;
+  margin: auto 0;
+}
+.sidemenu .item{
+  color: white;
+}
+.sidemenu ion-badge{ margin-top: 12px !important;  }
+</style>
+<ion-menu [content]="content" color="zine" class='sidemenu' >
+  <ion-content class="side-menu-gradient" >
+    <button *ngIf="isLogin" ion-item  (click)="editUser()" menuToggle style="text-align:center;background-color: rgba(0,0,0,0);">
+        <ion-avatar *ngIf="user" item-center style="display:flex;flex-direction:column;justify-content:center;align-items:center;align-content:center;">
+          <img  src="{{user.avatar + '?' + dateTime}}" style="width:80px;height:80px" >
+        </ion-avatar>
+          {{user.name}}
+    </button>
+    <ion-list>
+      <button ion-item tappable (click)="home()"  menuToggle style="background-color: rgba(0,0,0,0);">
+        <ion-icon name="home"></ion-icon> ホーム
+      </button>
+      <div *ngIf="isLogin"> 
+        <ion-item tappable (click)="openShops(uid)"  menuToggle style="background-color: rgba(0,0,0,0);">
+          <ion-icon name="restaurant"></ion-icon> お気に入り店舗&nbsp;<ion-badge color="zine" item-right> {{userData.shops_cnt}}</ion-badge>
+        </ion-item>
+        <ion-item tappable (click)="openTopics(uid)"  menuToggle style="background-color: rgba(0,0,0,0);">
+          <ion-icon name="list-box-outline"></ion-icon> お気に入りTopics&nbsp; <ion-badge color="zine" item-right>{{userData.topics_cnt}}</ion-badge>
+        </ion-item>
+        <ion-item tappable (click)="openUsers()"  menuToggle style="background-color: rgba(0,0,0,0);">
+          <ion-icon name="person"></ion-icon> お気に入りユーザー&nbsp; <ion-badge color="zine" item-right>{{userData.users_cnt}}</ion-badge>
+        </ion-item>
+        <ion-item tappable (click)="openEvaluates(uid)"  menuToggle style="background-color: rgba(0,0,0,0);">
+          <ion-icon name="create"></ion-icon> 投稿口コミ一覧 &nbsp; <ion-badge *ngIf="userData.evaluates_cnt" color="zine" item-right>{{userData.evaluates_cnt}}</ion-badge>
+        </ion-item>
+        <ion-item tappable (click)="openPhotoViewe(uid)"  menuToggle style="background-color: rgba(0,0,0,0);">
+          <ion-icon name="images"></ion-icon> 投稿画像一覧 &nbsp; <ion-badge *ngIf="userData.evaluate_images_cnt" color="zine" item-right>{{userData.evaluate_images_cnt}}</ion-badge>
+        </ion-item>
+      </div>
+      <ion-item tappable (click)="setting()"  menuToggle style="background-color: rgba(0,0,0,0);">
+        <ion-icon name="settings"></ion-icon> 設定
+      </ion-item>
+        <ion-item *ngIf="!isLogin" tappable (click)="onLogin()"  menuToggle style="background-color: rgba(0,0,0,0);">
+          <ion-icon name="log-in"></ion-icon> ログイン
+        </ion-item>
+        <ion-item *ngIf="isLogin" tappable (click)="onLogout()"  menuToggle style="background-color: rgba(0,0,0,0);">
+          <ion-icon name="log-out"></ion-icon> ログアウト
+        </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+
+<ion-nav #content main [root]="rootPage"></ion-nav>
+</ion-split-pane>

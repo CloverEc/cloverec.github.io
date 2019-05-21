@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>お問い合わせ</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content style="margin-top:40px;" class="outer-content">
+  <ion-list  padding-right>
+    <ion-item>
+      <ion-textarea placeholder="なんでもお気軽にお問い合わせください" [(ngModel)]="message" ></ion-textarea>
+    </ion-item>
+  </ion-list>
+    <button ion-button color="primary" (click)="onSubmit(message)" block>投稿</button>
+</ion-content>

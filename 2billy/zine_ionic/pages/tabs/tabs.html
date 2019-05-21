@@ -1,0 +1,6 @@
+<ion-tabs color="zine" #mainTabs  >
+  <ion-tab [root]="tab1Root" tabTitle="ホーム" tabIcon="home" (ionSelect)="tapped()" ></ion-tab>
+  <ion-tab [root]="tab2Root" tabTitle="キャンペーン" tabIcon="logo-yen"></ion-tab>
+  <ion-tab [root]="tab3Root" tabTitle="口コミ" tabIcon="chatbubbles" ></ion-tab>
+  <ion-tab  tabTitle="マイページ" tabIcon="person" (ionSelect)="openMenu()" ></ion-tab>
+</ion-tabs>

@@ -1,0 +1,18 @@
+page-classified {
+
+}
+
+page-classified {
+  @include  makeIcon(icon-wechat, '\e900')
+  @include  makeIcon(icon-timeline, '\e901')
+  .icon-timeline:before {
+    content: "\e901";
+  } 
+  .icon-wechat:before {
+    content: "\e900";
+  } 
+
+  .img-loaded + ion-spinner {
+      display:none;
+  }
+}

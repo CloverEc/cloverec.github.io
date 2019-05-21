@@ -1,0 +1,93 @@
+<!--
+  Generated template for the ClassifiedsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<style>
+ion-grid p{ font-size:0.8rem; }
+ion-grid button { margin: 0 auto !important }
+</style>
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>クラシファイド　一覧</ion-title>
+    <ion-buttons end>
+      <button (click)="addPost()"ion-button icon-only>
+        <ion-icon name="create-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content" no-padding>
+  <ion-grid no-padding align-items-center text-center>
+    <ion-row no-padding justify-content-center style="margin-top: 10px;">
+      <ion-col col-2 text-center no-padding>
+        <button ion-fab mini color="orange" (click)="openClassifieds(99)"><ion-icon name="paper"></ion-icon></button>
+       <p class="classified-icon-text">総合</p>
+      </ion-col>
+      <ion-col col-2  text-center no-padding>
+        <button ion-fab mini color="danger" (click)="openClassifieds(1)"><ion-icon name="basket"></ion-icon></button>
+        <p class="classified-icon-text">売ります</p>
+      </ion-col>
+      <ion-col col-2  text-center no-padding>
+        <button ion-fab mini color="blue" (click)="openClassifieds(2)"><ion-icon name="cart"></ion-icon></button>
+        <p class="classified-icon-text">買います</p>
+      </ion-col>
+      <ion-col col-2  text-center no-padding>
+        <button ion-fab mini color="facebook" (click)="openClassifieds(5)"><ion-icon name="home"></ion-icon></button>
+        <p class="classified-icon-text">住宅</p>
+      </ion-col>
+      <ion-col col-2  text-center no-padding>
+        <button ion-fab mini color="green" (click)="openClassifieds(6)"><ion-icon name="paper-plane"></ion-icon></button>
+        <p class="classified-icon-text">求人</p>
+      </ion-col>
+      <ion-col col-2  text-center no-padding>
+        <button ion-fab mini color="danger" (click)="openClassifieds(7)"><ion-icon name="link"></ion-icon></button>
+        <p class="classified-icon-text">求職</p>
+      </ion-col>
+    </ion-row>
+    <ion-row no-padding>
+      <ion-col col-2  text-center no-padding>
+        <button ion-fab mini color="zine" (click)="openClassifieds(8)"><ion-icon name="megaphone"></ion-icon></button>
+        <p class="classified-icon-text">サークル</p>
+      </ion-col>
+      <ion-col col-2  text-center no-padding>
+        <button ion-fab mini color="orange" (click)="openClassifieds(11)"><ion-icon name="people"></ion-icon></button>
+        <p class="classified-icon-text">友達募集</p>
+      </ion-col>
+      <ion-col col-2  text-center no-padding>
+        <button ion-fab mini color="seccondary" (click)="openClassifieds(9)"><ion-icon name="wine"></ion-icon></button>
+        <p class="classified-icon-text">イベント</p>
+      </ion-col>
+      <ion-col col-2  text-center no-padding>
+        <button ion-fab mini color="wechat" (click)="openClassifieds(10)"><ion-icon name="book"></ion-icon></button>
+        <p class="classified-icon-text">学ぶ</p>
+      </ion-col>
+      <ion-col col-2  text-center no-padding>
+        <button ion-fab mini color="blue" (click)="openClassifieds(12)"><ion-icon name="briefcase"></ion-icon></button>
+        <p class="classified-icon-text">ビジネス</p>
+      </ion-col>
+      <ion-col col-2  text-center no-padding>
+        <button ion-fab mini color="green" (click)="openClassifieds(13)"><ion-icon name="leaf"></ion-icon></button>
+        <p class="classified-icon-text">その他</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+    <p style="border-bottom: 1px solid #9f6da9;margin-top:0px;margin-bottom:0"></p>
+  <ion-list inset>
+    <button no-padding ion-item *ngFor="let post of posts" (click)="openPost(post.id)">
+      <ion-avatar no-padding item-left  text-wrap>
+        <img src="{{post.avatar}}" style="margin-left:4px;">
+      </ion-avatar>
+      <h5 style="display:table;">
+        <ion-badge class="classified-badge" [color]="post.bbs_color" >{{post.bbs_category}}</ion-badge> {{post.title}}
+      </h5>
+      <p>{{post.created_time}}</p>
+    </button>
+  </ion-list>
+  <ion-infinite-scroll [enabled]="scrollEnable" (ionInfinite)="doInfinite($event)"> 
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

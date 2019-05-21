@@ -1,0 +1,102 @@
+<style>
+  ion-infinite-scroll-content {
+  }
+</style>
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>ユーザ情報</ion-title>
+    <ion-buttons end>
+      <button (click)="toggleFavorite()"ion-button icon-only>
+        <ion-icon name="star-outline" *ngIf="isCollect == false"></ion-icon>
+        <ion-icon name="star" *ngIf="isCollect == true"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content class="outer-content">
+  <div text-center class="user-profile" style="background-image:url(/assets/images/cover.jpg);background-color: #9f6da9;">
+    <div class="bg-dark">
+      <ion-grid>
+        <ion-row  text-center margin-top>
+          <ion-col text-center margin-top>
+            <div *ngIf="currentUser.gender === '女'" no-padding no-margin>
+              <button ion-fab  mini   style="margin:0 auto;margin-top:10px;" >
+                <ion-icon name="female-outline"></ion-icon>
+              </button>
+            </div>
+            <div *ngIf="currentUser.gender === '男'" no-padding no-margin>
+              <button ion-fab  mini  color="light" style="margin:0 auto;margin-top:10px;" >
+                <ion-icon name="male-outline"></ion-icon>
+              </button>
+            </div>
+          </ion-col>
+          <ion-col text-center>
+            <img class="profile-picture" src="{{currentUser.avatar}}">
+          </ion-col>
+          <ion-col text-center margin-top>
+            <button ion-fab mini color="light"  style="margin:0 auto;margin-top:10px;" >
+              <ion-icon name="heart-outline" color="danger"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <h4 ion-text color="light">{{ currentUser.name}}</h4>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <span style="color:white;">{{ currentUser.likenum }}</span><br>
+            <span style="color:white;">被いいね数</span>
+          </ion-col>
+          <ion-col>
+            <span style="color:white;">{{ totalCount }}</span><br>
+            <span  style="color:white;"class="desc">投稿数</span>
+          </ion-col>
+          <ion-col>
+            <span style="color:white;">{{ currentUser.sei_count}}</span><br>
+            <span  style="color:white;"class="desc">写真数</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+  <ion-list  no-lines>
+   <ion-item>
+     <p>名前: {{currentUser.name}}</p>
+   </ion-item>
+   <ion-item>
+    <p>性別: {{currentUser.gender}}</p>
+   </ion-item>
+   <ion-item>
+     <p>中国在住歴: {{currentUser.live_china}}</p>
+   </ion-item>
+   <ion-item>
+     <p>居住地: {{currentUser.address}}</p>
+   </ion-item>
+   <ion-item>
+     <p>出身: {{currentUser.country}}</p>
+   </ion-item>
+   <ion-item>
+     <p text-wrap>自己紹介: {{currentUser.self_introduction}}</p>
+   </ion-item>
+  </ion-list>
+  <ion-list>
+    <button ion-item *ngFor="let evaluate of evaluates" (click)="openShop(evaluate.shop_id)">
+      <h6>{{evaluate.title}}</h6>
+      <rating [(ngModel)]="evaluate.star" readOnly="true" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false" (ngModelChange)="onModelChange($event)"> 
+      </rating>
+      <p>{{evaluate.content}}</p>
+      <div *ngIf="evaluate.shop_evaluate_images">
+        <div *ngFor="let img  of evaluates.shop_evaluate_images">
+          <img src="{{img}}" style="width:100px" />
+        </div>
+      </div>
+    </button>  
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">                                                                          
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

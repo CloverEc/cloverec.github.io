@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>新規登録</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content class="outer-content">
+  <div padding>
+    <ion-segment [(ngModel)]="signUp">
+      <ion-segment-button value="phone">
+        携帯番号
+      </ion-segment-button>
+      <ion-segment-button value="email">
+        メール
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div [ngSwitch]="signUp">
+    <div *ngSwitchCase="'phone'">
+      <ion-list  >
+        <ion-item>
+          <ion-label fixed>输入手机号</ion-label>
+        <ion-input type="text" [(ngModel)]="mobile"></ion-input>
+        <button ion-button  item-right icon-left  (click)="sendSMS(mobile)" [disabled]="sms_disabled" style="width:90px;">
+          <ion-icon name=""></ion-icon>
+          {{sms_button_text}}
+        </button>
+        </ion-item>
+        <ion-item>
+          <ion-label fixed>短信验证码</ion-label>
+          <ion-input type="text" [(ngModel)]="validatecode"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label fixed>パスワード</ion-label>
+          <ion-input [(ngModel)]="password" name="password" type="password" #username="ngModel" spellcheck="false" autocapitalize="off" required>
+          </ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-row>
+        <ion-col>
+          <button ion-button (click)="onSingUp(mobile,validatecode,password)" type="submit" block>登録</button>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div *ngSwitchCase="'email'">
+      <ion-list  >
+        <ion-item>
+          <ion-label fixed>メールアドレス</ion-label>
+        <ion-input type="text" [(ngModel)]="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label fixed>パスワード</ion-label>
+          <ion-input [(ngModel)]="password" name="username" type="password" #username="ngModel" spellcheck="false" autocapitalize="off" required>
+          </ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-row>
+        <ion-col>
+          <button ion-button (click)="onSineUpEmail(email,password)" type="submit" block>登録</button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>

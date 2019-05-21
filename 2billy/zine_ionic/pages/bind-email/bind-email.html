@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only (click)="openMenu()" >
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>Bind Email</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>Email</ion-label>
+      <ion-input type="email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <ion-item>                                                                                                                      
+      <ion-label fixed>認証</ion-label>
+      <ion-input type="number" [(ngModel)]="captcha"></ion-input>                                                         
+      <button ion-button outline item-right icon-left (click)="smsAuth(email)" [disabled]="sms_disabled">
+        <ion-icon name=""></ion-icon>{{sms_button_text}}
+      </button>
+    </ion-item>
+  </ion-list>
+  <button ion-button full tappable (click)="onSave()" >変更する</button>
+</ion-content>

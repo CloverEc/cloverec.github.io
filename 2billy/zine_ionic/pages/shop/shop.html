@@ -1,0 +1,293 @@
+<!--
+  Generated template for the Shop page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<style>
+ion-icon{ margin-left:8px;  }
+</style>
+<ion-header>
+  <ion-navbar  >
+    <ion-title>お店情報&nbsp;{{shop.name}}</ion-title>
+    <ion-buttons end>
+      <button color="zine" (click)="toggleFavorite()"ion-button icon-only>
+        <ion-icon name="star-outline" *ngIf="isCollect == false"></ion-icon>
+        <ion-icon name="star" *ngIf="isCollect == true"></ion-icon>
+      </button>
+      <button color="zine" (click)="onEvaluate()"ion-button icon-only>
+        <ion-icon name="create-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content class="outer-content" no-padding class="outer-content">
+  <div *ngIf="!isLoad"  style="height:100%;width:100%;margin: 0 auto ;text-align:center;">
+    <ion-spinner color="zine" style="margin-top:20%;"></ion-spinner>
+  </div>
+  <span *ngIf="isLoad">
+    <ion-grid style="margin-bottom:10px;">
+      <ion-row text-center no-margin no-padding>
+        <ion-col no-padding>
+          <div>
+            <h3 ion-text color="zine">{{shop.name}}</h3>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row no-margin no-padding style="margin-bottom:4px;">
+        <ion-col tappable (click)="onPhotoViewer()" no-margin no-padding col-4 item-left style="margin-top:0px;padding-left:5px;">
+          <div style="position: relative;">
+          <img  width="117" height="95" no-padding  src="{{shop.s_image}}" style="">
+          <ion-badge color="light" style="position: absolute;bottom: 0; right: 0;margin-bottom:5px;margin-right:10px;" item-left>{{shop.se_image_count}}</ion-badge>
+          </div>
+        </ion-col>
+        <ion-col  col-8 no-padding no-margin style="padding-left:8px;">
+          <p style="margin:0"><b>{{shop.shop_title}}</b></p>
+          <rating [(ngModel)]="shop.score" readOnly="true" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false" (ngModelChange)="onModelChange($event)"> 
+          </rating>
+          <span *ngFor="let s of shop.rates; let i = index" style="font-size:1.3rem" >
+            {{ s | myPipe:i}}
+            <br *ngIf="i == 2" >
+          </span>
+        </ion-col>
+      </ion-row>
+      <ion-row no-margin margin-left > 
+        <ion-col no-margin no-padding  tappable (click)="addLike(shop.id)">
+          <ion-icon name='heart-outline' *ngIf="!shop.islike" color="danger" style="margin-left:4px;font-size:180%" item-srat></ion-icon> 
+          <ion-icon name='heart' *ngIf="shop.islike" color="danger" style="margin-left:4px;font-size:180%" item-srat></ion-icon>
+          <span ion-text color="gray" style="font-size:80%" >{{shop.likenum}}</span>
+          <span no-margin>
+            <ion-icon name="ios-text-outline" style="font-size:180%" color="facebook"></ion-icon>
+            <span ion-text color="gray" style="font-size:80%" [hidden]="!shop.shop_evaluates_count">{{shop.shop_evaluates_count}}</span>
+          </span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-list>
+      <button ion-item  (click)="onMap(shop.address)" (press)="copyStr(shop.address)" >
+        <ion-icon name='pin-outline'  item-start></ion-icon>
+        {{shop.address}}
+      </button>
+
+      <button ion-item  (click)="onBigAddress(shop.address)">  
+        <ion-icon name='car-outline'  item-start></ion-icon>
+        <span text-left >住所を大きく</span>
+      </button >
+
+      <button *ngIf="isApp" ion-item (click)="onTelephone(shop.tel)">
+        <ion-icon name='home-outline'  item-start></ion-icon>
+        電話番号: <a style="font-size:140%" href="tel:{{shop.tel}}" >{{shop.tel}} </a>
+      </button>
+      <ion-item *ngIf="!isApp" >
+        <ion-icon name='home-outline'  item-start></ion-icon>
+        電話番号: <a style="font-size:140%" href="tel:{{shop.tel}}" >{{shop.tel}} </a>
+      </ion-item>
+
+      <ion-item >
+        <ion-icon name='time-outline'  item-start></ion-icon>
+        営業時間:
+        <ion-note text-wrap text-left  style="font-size:1.3rem;width: 60%;">
+          {{shop.business_hours}}
+        </ion-note>
+      </ion-item>
+      <ion-item  *ngIf="shop.shop_others">
+        <ion-icon name='attach'  item-start></ion-icon>
+        その他:
+        <ion-note text-wrap  text-wrap text-left  style="font-size:1.3rem;width: 60%;">
+          {{shop.shop_others}}
+        </ion-note>
+      </ion-item>
+    </ion-list>
+    <div *ngIf="shop.content"> 
+      <ion-card *ngFor="let p of prs"  >
+        <ion-card-content padding>
+          {{shop.content}}
+          <button *ngIf='shop.link' ion-button tappable (click)="openPage(shop.addition_link)" full>ホームページをチェックする</button>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div *ngIf="coupons">
+      <ion-list no-margin no-padding inset>
+        <div><b>お得なキャンペーン</b></div>
+        <button no-padding padding-left ion-item *ngFor="let coupon of coupons" (click)="openCoupon(coupon.id)" style="-webkit-align-items: center; border-left: 2px solid #a9957d; padding-left: 10px;
+        " >
+        <ion-thumbnail item-start >
+          <img src="{{coupon.image}}" style="width:80px;top:50%;position:sticky;" />
+        </ion-thumbnail>
+          <h6> {{ coupon.name }} </h6>
+          <p>
+          <span *ngFor="let category of coupon.shop_category">{{category.cate_name}}</span>
+          </p>
+        </button> 
+      </ion-list> 
+    </div>
+    <div *ngIf="prs.length > 0">
+      <ion-list no-padding inset>
+        <div><b>最新PR</b></div>
+        <ion-item no-padding tappable (click)="openPage(shop.addition_link)" >
+          <ion-card *ngFor="let p of prs" no-mergin >
+            <ion-card-content no-padding>
+              <ion-list no-padding no-lines>
+                <ion-item no-padding no-lines>
+                  <ion-thumbnail item-left no-lines>
+                    <img [src]="p.logo" style="margin-left:4px">
+                  </ion-thumbnail>
+                  <div style="font-size:1.2rem;"text-wrap>{{p.title}}</div>
+                  <p text-wrap >{{p.updated_time}}</p>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+        </ion-item>
+      </ion-list>
+    </div>
+    <ion-list no-padding inset *ngIf="recommends.length > 0">
+      <div ><b>おしらせ</b></div>
+      <ion-item no-padgding *ngFor="let evaluate of recommends" (click)="openRecommends(shop.id)" style="align-items: flex-start">
+        <ion-avatar no-padding item-left  text-wrap style="margin-left: 8px !important;">
+          <img src="{{evaluate.avatar}}">
+        </ion-avatar>
+        <h6><a style="color:#3b5998" tappable>{{evaluate.name}}</a></h6>
+        <h5>{{evaluate.title}}</h5>
+        <p style="display:table;">&nbsp;<span style="display: table-cell;
+        vertical-align: middle;
+        border: 1px solid  #ffb400;
+        font-weight: bold;
+        background-color: rgba(255, 180, 0, 0.1);
+        font-size:0.9rem; color:  #ffb400;
+        padding:1px;margin:1px;">店名</span> &nbsp;
+      <a (click)="openShop(evaluate.shop_id)"><span class="text-1x" >{{evaluate.shop_name}}</span></a>
+        </p>
+        <div style="width:100%">
+          <div style="float:left">
+            <rating [(ngModel)]="evaluate.star" readOnly="true" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false" (ngModelChange)="onModelChange($event)"> </rating>
+          </div>
+          <div style="float:right;height:31px;padding-top:7px">
+            <p text-nowrap style="font-size:70%;" >
+            <span *ngFor="let area of evaluate.shop_area">
+              {{area.area_name}}
+            </span>
+            <span *ngFor="let cate of evaluate.shop_category">
+              {{cate.cate_name}}
+            </span>
+            </p>
+          </div>
+          <div style="clear:both"></div>
+        </div>
+        <p text-wrap class="font-gray">{{evaluate.content | cutPipe:100}}</p>
+        <div *ngIf="evaluate.content.length > 140" >
+          <a tappable style="font-size:0.8rem;">フルテキスト</a>
+        </div>
+        <ion-row>
+          <div *ngFor="let img  of evaluate.shop_evaluate_images">
+            <img src="{{img.s_image}}" style="width:75px;height:75px;margin:3px" tappable (click)="openImages(evaluate.shop_evaluate_images)" />
+          </div >
+        </ion-row>
+        <p>{{evaluate.updated_at}}</p>
+        <div class="actions">
+          <ion-row  no-padding no-margin>
+            <ion-col col-1 *ngIf="!likeLoading" no-padding no-margin>
+              <ion-icon name="heart" color="danger" [hidden]="!evaluate.likenum"></ion-icon>
+              <ion-icon name="heart-outline" color="danger" [hidden]="evaluate.likenum"></ion-icon>
+            </ion-col>
+            <ion-col col-1 *ngIf="likeLoading" no-padding no-margin>
+              <ion-spinner></ion-spinner>
+            </ion-col>
+            <ion-col col-1  no-padding no-margin>
+              <span ion-text color="gray" style="font-size:80%" [hidden]="!evaluate.likenum">{{evaluate.likenum}}</span>
+            </ion-col>
+            <ion-col col-1  no-padding no-margin align-self-start>
+              <span >
+                <ion-icon name="ios-text-outline" color="facebook"></ion-icon>
+                <span ion-text color="gray" *ngIf="evaluate.shop_comments.length" style="font-size:80%"[hidden]="!evaluate.shop_comments.length">{{evaluate.shop_comments.length}}</span>
+              </span>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-item>
+      <!-- <ion&#45;item *ngIf="isApp" > -->
+      <!--   <button  *ngIf='shop.link' style="margin&#45;top:20px" (click)="onLink(shop.link)"ion&#45;button full>ホームページを見る</button> -->
+      <!-- </ion&#45;item> -->
+    </ion-list>
+
+    <ion-list no-padding inset>
+      <div><b>最新口コミ</b></div>
+      <ion-item no-padding *ngFor="let evaluate of evaluates" (click)="openEvaluates(shop.id)" style="align-items: flex-start">
+        <ion-avatar no-padding item-left  text-wrap style="margin-left: 8px !important;">
+          <img src="{{evaluate.avatar}}">
+        </ion-avatar>
+        <h6><a style="color:#3b5998" (click)="openUserDetail(evaluate.user_id)" tappable>{{evaluate.name}}</a></h6>
+        <h5>{{evaluate.title}}</h5>
+        <p style="display:table;">&nbsp;<span style="display: table-cell;
+        vertical-align: middle;
+        border: 1px solid  #ffb400;
+        font-weight: bold;
+        background-color: rgba(255, 180, 0, 0.1);
+        font-size:0.9rem; color:  #ffb400;
+        padding:1px;margin:1px;">店名</span> &nbsp;
+      <a (click)="openShop(evaluate.shop_id)"><span class="text-1x" >{{evaluate.shop_name}}</span></a>
+        </p>
+        <div style="width:100%">
+          <div style="float:left">
+            <rating [(ngModel)]="evaluate.star" readOnly="true" max="5" emptyStarIconName="star-outline" halfStarIconName="star-half" starIconName="star" nullable="false" (ngModelChange)="onModelChange($event)"> </rating>
+          </div>
+          <div style="float:right;height:31px;padding-top:7px">
+            <p text-nowrap style="font-size:70%;" >
+            <span *ngFor="let area of evaluate.shop_area">
+              {{area.area_name}}
+            </span>
+            <span *ngFor="let cate of evaluate.shop_category">
+              {{cate.cate_name}}
+            </span>
+            </p>
+          </div>
+          <div style="clear:both"></div>
+        </div>
+        <p text-wrap class="font-gray">{{evaluate.content | cutPipe:100}}</p>
+        <div *ngIf="evaluate.content.length > 140" >
+          <a tappable style="font-size:0.8rem;">フルテキスト</a>
+        </div>
+        <ion-row>
+          <div *ngFor="let img  of evaluate.shop_evaluate_images">
+            <img src="{{img.s_image}}" style="width:75px;height:75px;margin:3px" tappable (click)="openImages(evaluate.shop_evaluate_images)" />
+          </div >
+        </ion-row>
+        <p>{{evaluate.updated_at}}</p>
+        <div class="actions">
+          <ion-row  no-padding no-margin>
+            <ion-col col-1 *ngIf="!likeLoading" no-padding no-margin>
+              <ion-icon name="heart" color="danger" [hidden]="!evaluate.likenum"></ion-icon>
+              <ion-icon name="heart-outline" color="danger" [hidden]="evaluate.likenum"></ion-icon>
+            </ion-col>
+            <ion-col col-1 *ngIf="likeLoading" no-padding no-margin>
+              <ion-spinner></ion-spinner>
+            </ion-col>
+            <ion-col col-1  no-padding no-margin>
+              <span ion-text color="gray" style="font-size:80%" [hidden]="!evaluate.likenum">{{evaluate.likenum}}</span>
+            </ion-col>
+            <ion-col col-1  no-padding no-margin align-self-start>
+              <span >
+                <ion-icon name="ios-text-outline" color="facebook"></ion-icon>
+                <span ion-text color="gray" *ngIf="evaluate.shop_comments.length" style="font-size:80%"[hidden]="!evaluate.shop_comments.length">{{evaluate.shop_comments.length}}</span>
+              </span>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-item>
+    </ion-list>
+    <button  *ngIf='shop.addition_link' ion-button tappable (click)="openPage(shop.addition_link)" full>ホームページをチェックする</button>
+    <button tappable ion-button  full style="margin-top:50px;" (click)="onCorrection(shop.id)">間違い訂正</button>
+  </span>
+
+    <ion-fab *ngIf="isApp" right bottom>
+      <button ion-fab ><ion-icon name="md-share" style="margin-left:0px;"></ion-icon></button>
+      <ion-fab-list side="top">
+        <button (click)="shareWechat('SESSION')" color="wechat" ion-fab><span class="icon-wechat" ></span></button>
+        <button (click)="shareWechat('TIMELINE')" color="wechat" ion-fab><span style="font-size:130%;" class="icon-timeline"></span></button>
+        <button (click)="shareSocial()" color="facebook" ion-fab><ion-icon  style="font-size:120%;margin-left:0px;" name="md-share"></ion-icon></button>
+      </ion-fab-list>
+    </ion-fab>
+    <ion-fab  *ngIf="!isApp" right bottom>
+      <button ion-fab  (click)="openHome()" ><ion-icon style="margin-left:0px;"name="home"></ion-icon></button>
+    </ion-fab>
+</ion-content>
