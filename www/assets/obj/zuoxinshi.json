@@ -1,0 +1,23 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "zuoxinshi.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 496,
+        "faces"         : 465,
+        "normals"       : 497,
+        "uvs"           : 537,
+        "materials"     : 1
+    },
+
+    "materials": [	{
+	"DbgColor" : 15658734,
+	"DbgIndex" : 0,
+	"DbgName" : "Material__0"
+	}],
+
+    "buffers": "zuoxinshi.bin"
+
+}

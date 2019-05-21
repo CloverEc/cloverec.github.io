@@ -1,0 +1,23 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "sanjianban.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 364,
+        "faces"         : 294,
+        "normals"       : 364,
+        "uvs"           : 378,
+        "materials"     : 1
+    },
+
+    "materials": [	{
+	"DbgColor" : 15658734,
+	"DbgIndex" : 0,
+	"DbgName" : "Material__0"
+	}],
+
+    "buffers": "sanjianban.bin"
+
+}

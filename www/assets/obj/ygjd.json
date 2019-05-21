@@ -1,0 +1,23 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "ygjd.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 55,
+        "faces"         : 52,
+        "normals"       : 0,
+        "uvs"           : 55,
+        "materials"     : 1
+    },
+
+    "materials": [	{
+	"DbgColor" : 15658734,
+	"DbgIndex" : 0,
+	"DbgName" : "_????Material__41"
+	}],
+
+    "buffers": "ygjd.bin"
+
+}

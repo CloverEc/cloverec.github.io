@@ -1,0 +1,23 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "youshirutouji.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 192,
+        "faces"         : 193,
+        "normals"       : 193,
+        "uvs"           : 263,
+        "materials"     : 1
+    },
+
+    "materials": [	{
+	"DbgColor" : 15658734,
+	"DbgIndex" : 0,
+	"DbgName" : "Material__0"
+	}],
+
+    "buffers": "youshirutouji.bin"
+
+}

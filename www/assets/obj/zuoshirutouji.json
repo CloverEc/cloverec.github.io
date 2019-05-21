@@ -1,0 +1,23 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "zuoshirutouji.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 215,
+        "faces"         : 217,
+        "normals"       : 215,
+        "uvs"           : 280,
+        "materials"     : 1
+    },
+
+    "materials": [	{
+	"DbgColor" : 15658734,
+	"DbgIndex" : 0,
+	"DbgName" : "Material__0"
+	}],
+
+    "buffers": "zuoshirutouji.bin"
+
+}

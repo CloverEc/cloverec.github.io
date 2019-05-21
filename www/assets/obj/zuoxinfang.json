@@ -1,0 +1,23 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "zuoxinfang.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 506,
+        "faces"         : 481,
+        "normals"       : 506,
+        "uvs"           : 635,
+        "materials"     : 1
+    },
+
+    "materials": [	{
+	"DbgColor" : 15658734,
+	"DbgIndex" : 0,
+	"DbgName" : "Material__0"
+	}],
+
+    "buffers": "zuoxinfang.bin"
+
+}

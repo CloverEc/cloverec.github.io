@@ -1,0 +1,23 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "youxinfang.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 172,
+        "faces"         : 149,
+        "normals"       : 172,
+        "uvs"           : 176,
+        "materials"     : 1
+    },
+
+    "materials": [	{
+	"DbgColor" : 15658734,
+	"DbgIndex" : 0,
+	"DbgName" : "07___Default"
+	}],
+
+    "buffers": "youxinfang.bin"
+
+}

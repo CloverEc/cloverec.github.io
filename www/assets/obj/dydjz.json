@@ -1,0 +1,23 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "dydjz.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 66,
+        "faces"         : 62,
+        "normals"       : 0,
+        "uvs"           : 66,
+        "materials"     : 1
+    },
+
+    "materials": [	{
+	"DbgColor" : 15658734,
+	"DbgIndex" : 0,
+	"DbgName" : "_????Material__41"
+	}],
+
+    "buffers": "dydjz.bin"
+
+}

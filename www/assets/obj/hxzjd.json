@@ -1,0 +1,23 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "hxzjd.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 60,
+        "faces"         : 54,
+        "normals"       : 0,
+        "uvs"           : 66,
+        "materials"     : 1
+    },
+
+    "materials": [	{
+	"DbgColor" : 15658734,
+	"DbgIndex" : 0,
+	"DbgName" : "_????Material__41"
+	}],
+
+    "buffers": "hxzjd.bin"
+
+}

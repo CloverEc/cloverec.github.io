@@ -1,0 +1,16 @@
+{"total_count":7,"current_page":1,"total_pages":1,"patients":[
+    {"id":"5994530ae038e21674ce349f","id_code":"68149372","last_disease_name":"稳定型心绞痛","last_surgery_name":"择期PCI","info":{"Name":"任XX","Admissionage":47,"Gender":"男","Mobile":null,"Hospno":"0132646","id_no":null},
+"is_record":"0","is_visit":"1","last_time":"2017-11-16"},
+{"id":"59945363e038e21674ce34c2","id_code":"16908532","last_disease_name":"心房扑动","last_surgery_name":"快速性心律失常射频消融术","info":{"Name":"李XX","Admissionage":49,"Gender":"男","Mobile":null,"Hospno":"0132579","id_no":null},
+"is_record":"0","is_visit":"1","last_time":"2017-10-16"},
+{"id":"59945340e038e21674ce34b1","id_code":"94612803","last_disease_name":"冠心病","last_surgery_name":"冠状动脉旁路移植术","info":{"Name":"丁XX","Admissionage":55,"Gender":"男","Mobile":null,"Hospno":"0132539","id_no":null},
+"is_record":"0","is_visit":"1","last_time":"2017-08-16"},
+{"id":"599452c9e038e21674ce3489","id_code":"42817930","last_disease_name":"主动脉炎","last_surgery_name":"保守治疗","info":{"Name":"王X","Admissionage":48,"Gender":"男","Mobile":null,"Hospno":"0132973","id_no":null},
+"is_record":"0","is_visit":"1","last_time":"2017-08-16"},
+{"id":"599452a0e038e21674ce3478","id_code":"69801452","last_disease_name":"主动脉瓣狭窄","last_surgery_name":"主动脉瓣置换术","info":{"Name":"谢XX","Admissionage":45,"Gender":"女","Mobile":null,"Hospno":"0132672","id_no":null},
+"is_record":"0","is_visit":"1","last_time":"2017-08-16"},
+{"id":"59945243e038e21674ce3458","id_code":"04736185","last_disease_name":"室间隔缺损","last_surgery_name":"室间隔缺损修补术","info":{"Name":"胡XX","Admissionage":46,"Gender":"女","Mobile":null,"Hospno":"0132684","id_no":null},
+"is_record":"0","is_visit":"1","last_time":"2017-08-16"},
+{"id":"5994521ee038e21674ce3447","id_code":"61084932","last_disease_name":"主动脉夹层","last_surgery_name":"升主动脉置换术","info":{"Name":"金X","Admissionage":50,"Gender":"男","Mobile":null,"Hospno":"0132657","id_no":null},
+"is_record":"0","is_visit":"1","last_time":"2017-08-16"}
+]}

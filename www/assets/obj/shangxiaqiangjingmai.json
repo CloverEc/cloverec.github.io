@@ -1,0 +1,23 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "shangxiaqiangjingmai.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 1139,
+        "faces"         : 1083,
+        "normals"       : 1158,
+        "uvs"           : 1256,
+        "materials"     : 1
+    },
+
+    "materials": [	{
+	"DbgColor" : 15658734,
+	"DbgIndex" : 0,
+	"DbgName" : "07___Default"
+	}],
+
+    "buffers": "shangxiaqiangjingmai.bin"
+
+}

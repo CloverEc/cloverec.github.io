@@ -1,0 +1,23 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "erjianban.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 400,
+        "faces"         : 334,
+        "normals"       : 400,
+        "uvs"           : 163,
+        "materials"     : 1
+    },
+
+    "materials": [	{
+	"DbgColor" : 15658734,
+	"DbgIndex" : 0,
+	"DbgName" : "Material__0"
+	}],
+
+    "buffers": "erjianban.bin"
+
+}

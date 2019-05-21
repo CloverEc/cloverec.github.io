@@ -1,0 +1,23 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "shijiangejibuquesun.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 434,
+        "faces"         : 463,
+        "normals"       : 492,
+        "uvs"           : 533,
+        "materials"     : 1
+    },
+
+    "materials": [	{
+	"DbgColor" : 15658734,
+	"DbgIndex" : 0,
+	"DbgName" : "08___Default"
+	}],
+
+    "buffers": "shijiangejibuquesun.bin"
+
+}

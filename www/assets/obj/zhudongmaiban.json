@@ -1,0 +1,23 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "zhudongmaiban.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 584,
+        "faces"         : 566,
+        "normals"       : 584,
+        "uvs"           : 605,
+        "materials"     : 1
+    },
+
+    "materials": [	{
+	"DbgColor" : 15658734,
+	"DbgIndex" : 0,
+	"DbgName" : "Material__0"
+	}],
+
+    "buffers": "zhudongmaiban.bin"
+
+}

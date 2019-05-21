@@ -1,0 +1,23 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "zuoxiner.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 110,
+        "faces"         : 106,
+        "normals"       : 110,
+        "uvs"           : 130,
+        "materials"     : 1
+    },
+
+    "materials": [	{
+	"DbgColor" : 15658734,
+	"DbgIndex" : 0,
+	"DbgName" : "Material__0"
+	}],
+
+    "buffers": "zuoxiner.bin"
+
+}

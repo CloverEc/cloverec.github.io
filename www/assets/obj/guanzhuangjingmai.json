@@ -1,0 +1,23 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "guanzhuangjingmai.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 2055,
+        "faces"         : 1917,
+        "normals"       : 0,
+        "uvs"           : 2054,
+        "materials"     : 1
+    },
+
+    "materials": [	{
+	"DbgColor" : 15658734,
+	"DbgIndex" : 0,
+	"DbgName" : "Material__88"
+	}],
+
+    "buffers": "guanzhuangjingmai.bin"
+
+}

@@ -1,0 +1,23 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "shengyufenduan.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 1686,
+        "faces"         : 1532,
+        "normals"       : 0,
+        "uvs"           : 1628,
+        "materials"     : 1
+    },
+
+    "materials": [	{
+	"DbgColor" : 15658734,
+	"DbgIndex" : 0,
+	"DbgName" : "Material__36"
+	}],
+
+    "buffers": "shengyufenduan.bin"
+
+}

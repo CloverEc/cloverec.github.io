@@ -1,0 +1,23 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "dyz.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 108,
+        "faces"         : 104,
+        "normals"       : 108,
+        "uvs"           : 108,
+        "materials"     : 0
+    },
+
+    "materials": [	{
+	"DbgColor" : 15658734,
+	"DbgIndex" : 0,
+	"DbgName" : "default"
+	}],
+
+    "buffers": "dyz.bin"
+
+}

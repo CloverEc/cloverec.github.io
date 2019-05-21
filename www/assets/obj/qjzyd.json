@@ -1,0 +1,23 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "qjzyd.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 84,
+        "faces"         : 80,
+        "normals"       : 0,
+        "uvs"           : 84,
+        "materials"     : 1
+    },
+
+    "materials": [	{
+	"DbgColor" : 15658734,
+	"DbgIndex" : 0,
+	"DbgName" : "_????Material__41"
+	}],
+
+    "buffers": "qjzyd.bin"
+
+}

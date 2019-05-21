@@ -1,0 +1,23 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "feidongmai.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 312,
+        "faces"         : 296,
+        "normals"       : 312,
+        "uvs"           : 352,
+        "materials"     : 1
+    },
+
+    "materials": [	{
+	"DbgColor" : 15658734,
+	"DbgIndex" : 0,
+	"DbgName" : "Material__0"
+	}],
+
+    "buffers": "feidongmai.bin"
+
+}

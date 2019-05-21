@@ -1,0 +1,23 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "zshz.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 132,
+        "faces"         : 128,
+        "normals"       : 0,
+        "uvs"           : 132,
+        "materials"     : 1
+    },
+
+    "materials": [	{
+	"DbgColor" : 15658734,
+	"DbgIndex" : 0,
+	"DbgName" : "_????Material__41"
+	}],
+
+    "buffers": "zshz.bin"
+
+}

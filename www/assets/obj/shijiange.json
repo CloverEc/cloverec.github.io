@@ -1,0 +1,23 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "shijiange.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 387,
+        "faces"         : 410,
+        "normals"       : 441,
+        "uvs"           : 452,
+        "materials"     : 1
+    },
+
+    "materials": [	{
+	"DbgColor" : 15658734,
+	"DbgIndex" : 0,
+	"DbgName" : "Material__0"
+	}],
+
+    "buffers": "shijiange.bin"
+
+}

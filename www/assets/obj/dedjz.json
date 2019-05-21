@@ -1,0 +1,23 @@
+{
+
+    "metadata" :
+    {
+        "formatVersion" : 3.1,
+        "sourceFile"    : "dedjz.obj",
+        "generatedBy"   : "OBJConverter",
+        "vertices"      : 42,
+        "faces"         : 38,
+        "normals"       : 0,
+        "uvs"           : 42,
+        "materials"     : 1
+    },
+
+    "materials": [	{
+	"DbgColor" : 15658734,
+	"DbgIndex" : 0,
+	"DbgName" : "_????Material__41"
+	}],
+
+    "buffers": "dedjz.bin"
+
+}
