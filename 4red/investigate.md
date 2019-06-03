@@ -7,20 +7,19 @@
 スローモーション表現、中間画像をディープラーニングにより生成する
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/MjViy6kyiqs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/MjViy6kyiqs/0.jpg)](https://www.youtube.com/watch?v=MjViy6kyiqs)
 
 
 低解像度から高解像度へ変換する
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/pZXFXtfd-Ak" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/pZXFXtfd-Ak/0.jpg)](https://www.youtube.com/watch?v=pZXFXtfd-Ak)
 [TecoGAN](https://github.com/thunil/TecoGAN)
 
 動画から自動でモデリングして３D環境を作成
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/ayPqjPekn7g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/ayPqjPekn7g/0.jpg)](https://www.youtube.com/watch?v=ayPqjPekn7g)
 
 
 ##音声合成
