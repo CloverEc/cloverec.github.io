@@ -2,10 +2,14 @@
 
 
 ###動画
+
+
 スローモーション表現、中間画像をディープラーニングにより生成する
 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/MjViy6kyiqs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/MjViy6kyiqs/0.jpg)](https://www.youtube.com/watch?v=MjViy6kyiqs)
 
 
 低解像度から高解像度へ変換する
@@ -23,4 +27,4 @@
 
 有名ポッドキャスターの声がほとんど聞き分けられないくらい再現されている
 
-http://fakejoerogan.com/
+[Faux Rogan](http://fakejoerogan.com/)
